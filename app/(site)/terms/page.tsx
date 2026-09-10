@@ -37,7 +37,7 @@ export default function TermsPage() {
 
         <h2>3. Not Legal Advice</h2>
         <p>
-          Content on this website, including Insights articles, is
+          Content on this website, including Blog articles, is
           provided for general informational purposes only and does not
           constitute legal advice. See our{" "}
           <a href="/legal-disclaimer" className="underline">

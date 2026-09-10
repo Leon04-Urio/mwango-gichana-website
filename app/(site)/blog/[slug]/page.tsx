@@ -5,13 +5,17 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
 import { CTABand } from "@/components/sections/CTABand";
-import { articles, getArticleBySlug } from "@/lib/content/articles";
+import { PortableTextRenderer, extractHeadings } from "@/components/blog/PortableTextRenderer";
+import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
+import { sanityClient } from "@/sanity/lib/client";
+import { articleBySlugQuery, articleSlugsQuery } from "@/sanity/lib/queries";
+import type { ArticleFull } from "@/sanity/lib/types";
 import { getPracticeAreaBySlug } from "@/lib/content/practiceAreas";
-import { getAttorneyBySlug } from "@/lib/content/attorneys";
 import { buildMetadata } from "@/lib/seo";
 
-export function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+export async function generateStaticParams() {
+  const slugs = await sanityClient.fetch<{ slug: string }[]>(articleSlugsQuery);
+  return slugs.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -20,13 +24,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await sanityFetch<ArticleFull | null>(articleBySlugQuery, { slug });
   if (!article) return {};
+  const image = resolveImage(article.coverImage, article.title);
   return buildMetadata({
     title: article.title,
     description: article.metaDescription,
-    path: `/insights/${article.slug}`,
-    image: article.coverImage.src,
+    path: `/blog/${article.slug}`,
+    image: image?.src,
   });
 }
 
@@ -38,37 +43,42 @@ function formatDate(dateStr: string) {
   });
 }
 
-function slugify(text: string) {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
 export default async function ArticlePage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await sanityFetch<ArticleFull | null>(articleBySlugQuery, { slug });
   if (!article) notFound();
 
-  const practiceArea = getPracticeAreaBySlug(article.practiceAreaSlug);
-  const author = getAttorneyBySlug(article.author);
-  const headings = article.content.filter((b) => b.type === "heading");
-  const related = articles.filter((a) =>
-    article.relatedArticleSlugs.includes(a.slug)
-  );
+  const practiceArea = article.practiceAreaSlug
+    ? getPracticeAreaBySlug(article.practiceAreaSlug)
+    : undefined;
+  const coverImage = resolveImage(article.coverImage, article.title);
+  const headings = extractHeadings(article.content);
 
   return (
     <>
-      <ArticleJsonLd article={article} />
+      <ArticleJsonLd
+        article={{
+          title: article.title,
+          metaDescription: article.metaDescription,
+          slug: article.slug,
+          publishedAt: article.publishedAt,
+          updatedAt: article.updatedAt,
+          author: article.author,
+          coverImageSrc: coverImage?.src ?? null,
+        }}
+      />
 
       <div className="border-b border-border-hairline bg-ivory-dim">
         <div className="mx-auto max-w-3xl px-6 pb-12 pt-32 sm:pt-36 lg:pt-40">
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Insights", href: "/insights" },
-              { label: article.title, href: `/insights/${article.slug}` },
+              { label: "Blog", href: "/blog" },
+              { label: article.title, href: `/blog/${article.slug}` },
             ]}
           />
           <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -80,11 +90,6 @@ export default async function ArticlePage({
                 {practiceArea.shortTitle}
               </Link>
             )}
-            {article.isDemo && (
-              <span className="border border-gold-500/50 bg-gold-500/10 px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-gold-600">
-                Demo Content
-              </span>
-            )}
           </div>
           <h1 className="mt-4 font-display text-3xl leading-tight text-balance text-navy-950 sm:text-4xl md:text-5xl">
             {article.title}
@@ -93,7 +98,7 @@ export default async function ArticlePage({
             <span>
               By{" "}
               <span className="font-medium text-navy-950">
-                {author ? author.name : article.author}
+                {article.author || "Mwango Gichana & Co. Advocates"}
               </span>
             </span>
             <span aria-hidden="true">&middot;</span>
@@ -108,16 +113,18 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      <div className="relative aspect-[21/9] w-full overflow-hidden bg-navy-900">
-        <Image
-          src={article.coverImage.src}
-          alt={article.coverImage.alt}
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover"
-        />
-      </div>
+      {coverImage && (
+        <div className="relative aspect-[21/9] w-full overflow-hidden bg-navy-900">
+          <Image
+            src={coverImage.src}
+            alt={coverImage.alt}
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <div className="mx-auto grid max-w-8xl grid-cols-1 gap-16 px-6 py-16 lg:grid-cols-12 lg:gap-12 lg:px-10 lg:py-20">
         {headings.length > 1 && (
@@ -128,9 +135,9 @@ export default async function ArticlePage({
               </p>
               <ul className="mt-4 space-y-2.5 border-l border-border-hairline">
                 {headings.map((h) => (
-                  <li key={h.text}>
+                  <li key={h.id}>
                     <a
-                      href={`#${slugify(h.text)}`}
+                      href={`#${h.id}`}
                       className="focus-ring block border-l-2 border-transparent pl-4 -ml-px text-sm text-charcoal-soft transition-colors hover:border-gold-500 hover:text-navy-950"
                     >
                       {h.text}
@@ -146,35 +153,7 @@ export default async function ArticlePage({
           className={`order-1 max-w-3xl lg:order-2 ${headings.length > 1 ? "lg:col-span-9" : "lg:col-span-8 lg:col-start-3"}`}
         >
           <div className="prose-article space-y-5 text-charcoal leading-relaxed">
-            {article.content.map((block, i) => {
-              if (block.type === "paragraph") {
-                return (
-                  <p key={i} className="text-base sm:text-lg">
-                    {block.text}
-                  </p>
-                );
-              }
-              if (block.type === "heading") {
-                return (
-                  <h2
-                    key={i}
-                    id={slugify(block.text)}
-                    className="pt-4 font-display text-2xl text-navy-950 scroll-mt-32"
-                  >
-                    {block.text}
-                  </h2>
-                );
-              }
-              return (
-                <ul key={i} className="list-disc space-y-2 pl-5">
-                  {block.items.map((item) => (
-                    <li key={item} className="text-base sm:text-lg">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              );
-            })}
+            <PortableTextRenderer value={article.content} />
           </div>
 
           <div className="mt-14 border-t border-border-hairline pt-8">
@@ -211,15 +190,23 @@ export default async function ArticlePage({
         </article>
       </div>
 
-      {related.length > 0 && (
+      {article.relatedArticles?.length > 0 && (
         <section className="border-t border-border-hairline bg-ivory-dim py-20">
           <div className="mx-auto max-w-8xl px-6 lg:px-10">
-            <h2 className="font-display text-2xl text-navy-950">
-              Related Insights
-            </h2>
+            <h2 className="font-display text-2xl text-navy-950">Related Posts</h2>
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((a) => (
-                <ArticleCard key={a.slug} article={a} />
+              {article.relatedArticles.map((related) => (
+                <ArticleCard
+                  key={related.slug}
+                  article={{
+                    slug: related.slug,
+                    title: related.title,
+                    excerpt: related.excerpt,
+                    publishedAt: related.publishedAt,
+                    practiceAreaSlug: related.practiceAreaSlug,
+                    coverImage: resolveImage(related.coverImage, related.title),
+                  }}
+                />
               ))}
             </div>
           </div>

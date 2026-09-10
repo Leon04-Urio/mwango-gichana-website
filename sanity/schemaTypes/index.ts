@@ -6,6 +6,7 @@ import { category } from "./category";
 import { testimonial } from "./testimonial";
 import { location } from "./location";
 import { faqObject, faqDocument } from "./faq";
+import { client } from "./client";
 
 export const schemaTypes = [
   siteSettings,
@@ -14,6 +15,7 @@ export const schemaTypes = [
   article,
   category,
   testimonial,
+  client,
   location,
   faqObject,
   faqDocument,

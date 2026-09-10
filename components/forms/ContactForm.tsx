@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Loader2, CircleCheck, CircleAlert } from "lucide-react";
 import { practiceAreas } from "@/lib/content/practiceAreas";
+import { trackContactFormSubmit } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -46,6 +47,7 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      trackContactFormSubmit(String(payload.practiceArea || ""));
       form.reset();
     } catch {
       setErrorMessage("Something went wrong. Please try again or contact us directly.");

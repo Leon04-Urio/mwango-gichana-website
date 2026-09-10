@@ -1,7 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Article } from "@/lib/content/types";
 import { getPracticeAreaBySlug } from "@/lib/content/practiceAreas";
+
+export interface ArticleCardData {
+  slug: string;
+  title: string;
+  excerpt: string;
+  publishedAt: string;
+  practiceAreaSlug: string | null;
+  coverImage: { src: string; alt: string } | null;
+}
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("en-KE", {
@@ -11,23 +19,22 @@ function formatDate(dateStr: string) {
   });
 }
 
-export function ArticleCard({ article }: { article: Article }) {
-  const practiceArea = getPracticeAreaBySlug(article.practiceAreaSlug);
+export function ArticleCard({ article }: { article: ArticleCardData }) {
+  const practiceArea = article.practiceAreaSlug
+    ? getPracticeAreaBySlug(article.practiceAreaSlug)
+    : undefined;
 
   return (
-    <Link href={`/insights/${article.slug}`} className="focus-ring group block">
+    <Link href={`/blog/${article.slug}`} className="focus-ring group block">
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
-        <Image
-          src={article.coverImage.src}
-          alt={article.coverImage.alt}
-          fill
-          sizes="(min-width: 1024px) 33vw, 90vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        />
-        {article.isDemo && (
-          <span className="absolute left-3 top-3 border border-ivory/40 bg-navy-950/70 px-2.5 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-ivory/85 backdrop-blur-sm">
-            Demo Content
-          </span>
+        {article.coverImage && (
+          <Image
+            src={article.coverImage.src}
+            alt={article.coverImage.alt}
+            fill
+            sizes="(min-width: 1024px) 33vw, 90vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
         )}
       </div>
       <div className="mt-5">

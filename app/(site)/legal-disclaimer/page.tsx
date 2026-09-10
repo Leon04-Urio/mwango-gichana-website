@@ -26,7 +26,7 @@ export default function LegalDisclaimerPage() {
         </p>
         <p>
           The content published on this website, including all Practice
-          Area pages and Insights articles, is intended to provide general
+          Area pages and Blog articles, is intended to provide general
           information about Kenyan law and about {firm.name}. It is not a
           substitute for individualised legal advice from a qualified
           advocate and should not be relied upon as such.

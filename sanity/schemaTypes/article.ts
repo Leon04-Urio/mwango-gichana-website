@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const article = defineType({
   name: "article",
-  title: "Insight / Article",
+  title: "Blog Post",
   type: "document",
   fields: [
     defineField({ name: "title", title: "Title", type: "string", validation: (r) => r.required() }),

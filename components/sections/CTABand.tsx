@@ -5,6 +5,7 @@ import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { firm } from "@/lib/content/firm";
 import { fadeUp } from "@/lib/motion";
+import { trackPhoneClick } from "@/lib/analytics";
 
 export function CTABand() {
   return (
@@ -40,6 +41,7 @@ export function CTABand() {
           </Button>
           <a
             href={firm.contact.phoneHref}
+            onClick={() => trackPhoneClick("cta_band")}
             className="focus-ring flex items-center gap-2.5 text-ivory/80 transition-colors hover:text-ivory"
           >
             <Phone className="size-4 text-gold-400" aria-hidden="true" />

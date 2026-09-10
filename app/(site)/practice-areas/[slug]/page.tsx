@@ -2,15 +2,15 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
-import { ArticleCard } from "@/components/cards/ArticleCard";
-import { AttorneyCard } from "@/components/cards/AttorneyCard";
+import { ArticleCard, type ArticleCardData } from "@/components/cards/ArticleCard";
 import { CTABand } from "@/components/sections/CTABand";
 import {
   practiceAreas,
   getPracticeAreaBySlug,
 } from "@/lib/content/practiceAreas";
-import { attorneys } from "@/lib/content/attorneys";
-import { articles } from "@/lib/content/articles";
+import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
+import { articlesByPracticeAreaQuery } from "@/sanity/lib/queries";
+import type { ArticleSummary } from "@/sanity/lib/types";
 import { buildMetadata } from "@/lib/seo";
 import { Check, CircleAlert } from "lucide-react";
 
@@ -43,12 +43,18 @@ export default async function PracticeAreaPage({
   const area = getPracticeAreaBySlug(slug);
   if (!area) notFound();
 
-  const responsibleAttorneys = attorneys.filter((a) =>
-    area.attorneySlugs.includes(a.slug)
+  const relatedArticlesRaw = await sanityFetch<ArticleSummary[]>(
+    articlesByPracticeAreaQuery,
+    { slug: area.slug }
   );
-  const relatedArticles = articles.filter((a) =>
-    area.relatedArticleSlugs.includes(a.slug)
-  );
+  const relatedArticles: ArticleCardData[] = relatedArticlesRaw.map((article) => ({
+    slug: article.slug,
+    title: article.title,
+    excerpt: article.excerpt,
+    publishedAt: article.publishedAt,
+    practiceAreaSlug: article.practiceAreaSlug,
+    coverImage: resolveImage(article.coverImage, article.title),
+  }));
 
   return (
     <>
@@ -177,24 +183,6 @@ export default async function PracticeAreaPage({
                 Request a Consultation
               </a>
             </div>
-
-            {responsibleAttorneys.length > 0 ? (
-              <div>
-                <h3 className="font-display text-lg text-navy-950">
-                  Attorney Responsible
-                </h3>
-                <div className="mt-5 space-y-8">
-                  {responsibleAttorneys.map((attorney) => (
-                    <AttorneyCard key={attorney.slug} attorney={attorney} />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="border border-dashed border-border-hairline p-6 text-sm text-charcoal-soft">
-                Attorney assignment for this practice area is pending
-                confirmation by the firm.
-              </div>
-            )}
           </aside>
         </div>
       </section>
@@ -202,7 +190,7 @@ export default async function PracticeAreaPage({
       {relatedArticles.length > 0 && (
         <section className="border-t border-border-hairline bg-ivory-dim py-20 sm:py-24">
           <div className="mx-auto max-w-8xl px-6 lg:px-10">
-            <SectionHeader eyebrow="Related Reading" title="Related Insights" />
+            <SectionHeader eyebrow="Related Reading" title="Related Blog Posts" />
             <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {relatedArticles.map((article) => (
                 <ArticleCard key={article.slug} article={article} />

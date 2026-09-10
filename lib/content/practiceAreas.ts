@@ -87,8 +87,6 @@ export const practiceAreas: PracticeArea[] = [
           "Commission a full title and land-history investigation before signing anything or making payment. Conservancy-adjacent and former group ranch land can carry restrictions or competing claims that a basic search will not surface.",
       },
     ],
-    attorneySlugs: [],
-    relatedArticleSlugs: ["group-ranch-land-rights-kajiado"],
     seoKeywords: [
       "land lawyer Kajiado",
       "conveyancing lawyer Amboseli",
@@ -191,8 +189,6 @@ export const practiceAreas: PracticeArea[] = [
           "Yes — where an estate includes land originating from a group ranch or with an unclear title history, succession and land-law issues often need to be resolved together. We handle both.",
       },
     ],
-    attorneySlugs: [],
-    relatedArticleSlugs: ["how-succession-works-in-kenya"],
     seoKeywords: [
       "family lawyer Kajiado",
       "divorce lawyer Kajiado",
@@ -283,8 +279,6 @@ export const practiceAreas: PracticeArea[] = [
           "Typically a formal demand letter, followed — if unresolved — by civil proceedings. We assess the strongest and most cost-effective route for your specific case.",
       },
     ],
-    attorneySlugs: [],
-    relatedArticleSlugs: ["what-to-do-after-a-demand-letter"],
     seoKeywords: [
       "corporate lawyer Kajiado",
       "commercial lawyer Kenya",
@@ -374,8 +368,6 @@ export const practiceAreas: PracticeArea[] = [
           "You can pursue enforcement — including garnishee proceedings or attachment of assets through licensed auctioneers. We handle judgment enforcement on behalf of our clients.",
       },
     ],
-    attorneySlugs: [],
-    relatedArticleSlugs: ["what-to-do-after-a-demand-letter"],
     seoKeywords: [
       "litigation lawyer Kajiado",
       "dispute resolution advocate Kenya",
@@ -449,8 +441,6 @@ export const practiceAreas: PracticeArea[] = [
           "Yes — pre-purchase due diligence is exactly when this service is most valuable. We recommend commissioning it before you sign an agreement or make any payment.",
       },
     ],
-    attorneySlugs: [],
-    relatedArticleSlugs: ["group-ranch-land-rights-kajiado"],
     seoKeywords: [
       "legal due diligence Kenya",
       "land due diligence Kajiado",

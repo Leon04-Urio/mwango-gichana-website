@@ -2,6 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 import { firm } from "@/lib/content/firm";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 export function WhatsAppButton() {
   const number = firm.contact.whatsappNumber;
@@ -17,6 +18,7 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
+      onClick={trackWhatsAppClick}
       className="focus-ring group fixed bottom-6 right-6 z-40 flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-navy-950/20 transition-transform duration-300 hover:scale-105 sm:bottom-8 sm:right-8"
     >
       <MessageCircle className="size-6" aria-hidden="true" fill="white" />

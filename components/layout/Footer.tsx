@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { LinkedInIcon } from "@/components/ui/icons/LinkedInIcon";
+import { TrackedPhoneLink } from "@/components/analytics/TrackedPhoneLink";
 import { firm } from "@/lib/content/firm";
 import { practiceAreas } from "@/lib/content/practiceAreas";
 
@@ -65,13 +66,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/attorneys" className="focus-ring rounded transition-colors hover:text-ivory">
-                  Our Team
-                </Link>
-              </li>
-              <li>
-                <Link href="/insights" className="focus-ring rounded transition-colors hover:text-ivory">
-                  Insights
+                <Link href="/blog" className="focus-ring rounded transition-colors hover:text-ivory">
+                  Blog
                 </Link>
               </li>
               <li>
@@ -97,9 +93,13 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="size-4 shrink-0 text-gold-400" aria-hidden="true" />
-                <a href={firm.contact.phoneHref} className="focus-ring rounded transition-colors hover:text-ivory">
+                <TrackedPhoneLink
+                  href={firm.contact.phoneHref}
+                  location="footer"
+                  className="focus-ring rounded transition-colors hover:text-ivory"
+                >
                   {firm.contact.phoneDisplay}
-                </a>
+                </TrackedPhoneLink>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="size-4 shrink-0 text-gold-400" aria-hidden="true" />

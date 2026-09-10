@@ -2,9 +2,18 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustStats } from "@/components/sections/TrustStats";
 import { AboutTeaser } from "@/components/sections/AboutTeaser";
 import { PracticeAreasGrid } from "@/components/sections/PracticeAreasGrid";
-import { AttorneysTeaser } from "@/components/sections/AttorneysTeaser";
-import { InsightsTeaser } from "@/components/sections/InsightsTeaser";
+import { ClientLogos } from "@/components/sections/ClientLogos";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { BlogTeaser } from "@/components/sections/BlogTeaser";
 import { CTABand } from "@/components/sections/CTABand";
+import type { ArticleCardData } from "@/components/cards/ArticleCard";
+import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
+import {
+  articleListQuery,
+  approvedClientsQuery,
+  approvedTestimonialsQuery,
+} from "@/sanity/lib/queries";
+import type { ArticleSummary, ClientLogo, Testimonial } from "@/sanity/lib/types";
 import { buildMetadata } from "@/lib/seo";
 import { firm } from "@/lib/content/firm";
 
@@ -21,15 +30,31 @@ export const metadata = buildMetadata({
   ],
 });
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [articles, clients, testimonials] = await Promise.all([
+    sanityFetch<ArticleSummary[]>(articleListQuery),
+    sanityFetch<ClientLogo[]>(approvedClientsQuery),
+    sanityFetch<Testimonial[]>(approvedTestimonialsQuery),
+  ]);
+
+  const recentPosts: ArticleCardData[] = articles.slice(0, 3).map((article) => ({
+    slug: article.slug,
+    title: article.title,
+    excerpt: article.excerpt,
+    publishedAt: article.publishedAt,
+    practiceAreaSlug: article.practiceAreaSlug,
+    coverImage: resolveImage(article.coverImage, article.title),
+  }));
+
   return (
     <>
       <Hero />
       <TrustStats />
+      <ClientLogos clients={clients} />
       <AboutTeaser />
       <PracticeAreasGrid />
-      <AttorneysTeaser />
-      <InsightsTeaser />
+      <Testimonials testimonials={testimonials} />
+      <BlogTeaser articles={recentPosts} />
       <CTABand />
     </>
   );

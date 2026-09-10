@@ -74,7 +74,7 @@ export const practiceArea = defineType({
     }),
     defineField({
       name: "relatedArticles",
-      title: "Related Insights",
+      title: "Related Blog Posts",
       type: "array",
       of: [{ type: "reference", to: [{ type: "article" }] }],
     }),

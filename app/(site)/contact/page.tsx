@@ -1,6 +1,8 @@
 import { Mail, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { TrackedPhoneLink } from "@/components/analytics/TrackedPhoneLink";
+import { TrackedWhatsAppLink } from "@/components/analytics/TrackedWhatsAppLink";
 import { firm } from "@/lib/content/firm";
 import { buildMetadata } from "@/lib/seo";
 
@@ -59,9 +61,13 @@ export default function ContactPage() {
                   <p className="text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
                     Phone
                   </p>
-                  <a href={firm.contact.phoneHref} className="focus-ring mt-1 block text-navy-950 hover:text-gold-600">
+                  <TrackedPhoneLink
+                    href={firm.contact.phoneHref}
+                    location="contact_page"
+                    className="focus-ring mt-1 block text-navy-950 hover:text-gold-600"
+                  >
                     {firm.contact.phoneDisplay}
-                  </a>
+                  </TrackedPhoneLink>
                 </div>
               </div>
 
@@ -71,14 +77,12 @@ export default function ContactPage() {
                   <p className="text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
                     WhatsApp
                   </p>
-                  <a
+                  <TrackedWhatsAppLink
                     href={`https://wa.me/${firm.contact.whatsappNumber}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="focus-ring mt-1 block text-navy-950 hover:text-gold-600"
                   >
                     {firm.contact.phoneDisplay}
-                  </a>
+                  </TrackedWhatsAppLink>
                 </div>
               </div>
 

@@ -13,8 +13,7 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Practice Areas", href: "/practice-areas" },
-  { label: "Our Team", href: "/attorneys" },
-  { label: "Insights", href: "/insights" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

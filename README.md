@@ -6,8 +6,14 @@ law firm in Kimana Town, Kajiado South, serving the Amboseli ecosystem.
 ## Stack
 
 Next.js (App Router) · React · TypeScript · Tailwind CSS v4 · Framer Motion ·
-Lucide icons · Sanity (schemas defined, not yet connected — see below) ·
-Resend (contact form email) · Vercel (target host)
+Lucide icons · Sanity (connected, live) · Resend (contact form email) ·
+Google Analytics 4 · GitHub + Vercel (hosting/CI)
+
+**Live infrastructure already set up:**
+- GitHub: `Leon04-Urio/mwango-gichana-website`
+- Vercel: connected to the GitHub repo (auto-deploys on push to `main`)
+- Sanity: project `gryyptqx` ("Mwango Gichana Website"), private `production`
+  dataset, Studio at `/studio`
 
 ## Getting Started
 
@@ -21,50 +27,63 @@ Open http://localhost:3000.
 
 ## Environment Variables
 
-See `.env.example` for the full list. At minimum for local development you
-can run with no env vars set — the contact form will simply log an error
-instead of sending email, and Sanity Studio will run unconfigured (both
-non-blocking for browsing the site).
+See `.env.example` for the full list and where to get each value.
 
-For a real deployment you need:
+## Content Model
 
-- `NEXT_PUBLIC_SITE_URL` — the production domain, used for canonical URLs, the
-  sitemap, and structured data.
-- `RESEND_API_KEY` + `CONTACT_FROM_EMAIL` — see "Contact Form" below.
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — see "Analytics" below.
+Two content sources, by design:
 
-## Content Model — Important
+- **`lib/content/*.ts`** — firm info, practice areas. Edited by changing code
+  (these change rarely and need a developer's review — legal service
+  descriptions, SEO copy).
+- **Sanity** (`sanity/lib/queries.ts`) — blog posts, the client/organization
+  showcase, and testimonials. Edited by the firm directly in Studio, no code
+  changes needed. This is the "admin side" the firm uses day to day.
 
-**The site currently reads content from `lib/content/*.ts`, not from Sanity.**
-Those files (`firm.ts`, `practiceAreas.ts`, `attorneys.ts`, `articles.ts`) hold
-the real content supplied by the firm (name, practice areas, contact details)
-plus clearly-marked placeholders (attorney profiles, office address, stats,
-vision/mission, demo articles) that still need client input.
+### Publishing a blog post (for the firm)
 
-Content shapes in `lib/content/types.ts` mirror what a Sanity GROQ query would
-return, specifically so this can be swapped for live Sanity data later without
-restructuring the page components — see "Connecting Sanity" below.
+1. Go to `/studio` on the live site and log in.
+2. Click **Blog Post** → **Create new**.
+3. Fill in title, excerpt, cover image (with alt text), category, related
+   practice area, and the body content.
+4. Toggle **Published** on, then **Publish** in the top-right.
+5. The post appears on `/blog` within about a minute automatically (or
+   instantly once the webhook below is configured).
 
-## Connecting Sanity (Not Yet Done)
+An article only appears on the live site once **Published** is toggled on —
+this lets the firm draft and review before it goes public.
 
-Sanity schemas for every content type (Practice Area, Attorney, Article,
-Category, Testimonial, Location, Site Settings, FAQ) are defined under
-`sanity/schemaTypes/`, and an embedded Studio is available at `/studio` once
-configured. This has **not** been connected to a live project because no
-Sanity project exists yet. To go live:
+### Client / organization showcase and testimonials (for the firm)
 
-1. Create a Sanity project at sanity.io (free tier is sufficient to start) and
-   note the Project ID.
-2. Set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`
-   (usually `production`) in your environment.
-3. Visit `/studio` on the deployed site (or `localhost:3000/studio` locally)
-   and log in with a Sanity account to start creating content.
-4. Replace the functions in `lib/content/*.ts` (e.g. `getPracticeAreaBySlug`)
-   with GROQ queries against `sanity/lib/client.ts`, keeping the same return
-   shapes defined in `lib/content/types.ts` so the page components (which
-   only import from `lib/content`) don't need to change.
-5. Migrate the real practice-area, attorney, and article content currently
-   hardcoded in `lib/content/*.ts` into Sanity documents.
+Under **Client / Organization Worked With** and **Testimonial** in Studio.
+Both have an explicit approval toggle (**Approved for Public Display** /
+**Approved for Publication**) that defaults to **off** — nothing appears on
+the site until the firm explicitly flips it on. This exists because client
+confidentiality matters for a law firm; nothing gets published just by being
+entered into the CMS.
+
+One example of each was seeded as an unapproved template (visible only in
+Studio) so the firm can see the expected format — edit it into a real entry
+or delete it.
+
+### On-demand content updates (webhook)
+
+Content fetched from Sanity revalidates automatically every 60 seconds, so a
+publish always shows up within a minute even with no further setup. For
+near-instant updates, wire a Sanity webhook once the production URL is known:
+
+```bash
+npx sanity hooks create \
+  --name "Revalidate site" \
+  --dataset production \
+  --url "https://<your-production-domain>/api/revalidate?secret=<REVALIDATE_SECRET>" \
+  --on create --on update --on delete \
+  --project-id gryyptqx
+```
+
+`REVALIDATE_SECRET` must match the value set in Vercel's environment
+variables (generate one with
+`node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"`).
 
 ## Contact Form
 
@@ -85,16 +104,24 @@ To activate it:
 Until `RESEND_API_KEY` is set, form submissions return a friendly error asking
 the visitor to call or email directly, rather than silently failing.
 
-## Analytics — GA4 & Search Console
+## Analytics — Site Visits & Conversions
 
 - **Google Analytics 4**: set `NEXT_PUBLIC_GA_MEASUREMENT_ID` (format
-  `G-XXXXXXXXXX`) and the site will load GA4 via Next.js's official
+  `G-XXXXXXXXXX`) and the site loads GA4 via Next.js's official
   `@next/third-parties` integration, scoped to the public site only (not the
-  `/studio` CMS route).
+  `/studio` CMS route). The firm views all traffic and conversion data
+  directly in Google's own GA4 dashboard — nothing is built or hosted
+  separately for this.
+- **Conversion events already firing** (see `lib/analytics.ts`): a successful
+  contact-form submission (`generate_lead`), a WhatsApp button click
+  (`contact_whatsapp_click`), and a phone-number click
+  (`contact_phone_click`, from the footer, contact page, and CTA band). To
+  turn these into GA4 "conversions": in the GA4 admin, go to **Admin → Events**
+  and toggle **Mark as key event** for each one. This is a one-time setup step
+  done in Google's UI, not in this codebase.
 - **Google Search Console**: verify the domain (DNS TXT record is the most
   reliable method) and submit `https://<your-domain>/sitemap.xml`, which is
-  generated automatically from every practice area, attorney, and article in
-  `lib/content/*.ts`.
+  generated automatically from every practice area and published blog post.
 
 ## Google Business Profile
 
@@ -133,10 +160,11 @@ fix; revisit when Sanity ships an updated `@sanity/cli` release.
   actual base — **Kajiado South / Kimana / Amboseli** — rather than Nairobi,
   since that local specificity is the firm's real differentiator.
 - `app/sitemap.ts` and `app/robots.ts` are generated from the same content
-  lists that render the pages, so they can't drift out of sync.
-- Structured data (`LegalService`/`Organization`, `Person`, `Article`,
-  `BreadcrumbList`, `FAQPage`) only reflects content actually visible on the
-  page — no fabricated ratings, reviews, or credentials.
+  (practice areas + published Sanity blog posts) that renders the pages, so
+  they can't drift out of sync.
+- Structured data (`LegalService`/`Organization`, `Article`, `BreadcrumbList`,
+  `FAQPage`) only reflects content actually visible on the page — no
+  fabricated ratings, reviews, or credentials.
 
 ## Client Content Checklist
 
@@ -155,21 +183,14 @@ should be replaced before launch.
       assumed in `firm.contact.whatsappNumber`)
 - [ ] Google Business Profile (see above)
 
-**Attorneys**
-- [ ] Real attorney names, titles, and headshots (2 placeholder profiles exist
-      to prove out the template — `lib/content/attorneys.ts`)
-- [ ] Education, year admitted to the Kenyan Bar, LSK/professional memberships
-- [ ] Verified biographies
-- [ ] Which attorney is responsible for each practice area
-
 **Content**
 - [ ] Real trust-band statistics (years of experience, number of advocates —
       currently bracketed placeholders on the homepage)
-- [ ] Testimonials approved for publication (schema exists in Sanity, none
-      published yet)
-- [ ] Review of the 3 demo Insights articles in `lib/content/articles.ts`
-      (clearly marked "Demo Content" on the site) — either approve, edit, or
-      replace with real advocate-reviewed content before removing that label
+- [ ] Client/organization logos and testimonials — approve real ones in
+      Studio (see "Client / organization showcase" above); nothing shows
+      publicly until then
+- [ ] Review the 3 seed blog posts in Sanity (migrated from the original
+      demo content) — edit, replace, or leave as general-information posts
 - [ ] Legal review/approval of Privacy Policy, Terms of Use, and Legal
       Disclaimer placeholder copy
 
@@ -179,6 +200,10 @@ should be replaced before launch.
       and page files for `images.unsplash.com` URLs)
 - [ ] Brand assets / any existing style guide beyond navy + gold
 
+**Analytics**
+- [ ] Mark the three conversion events as GA4 key events (see "Analytics"
+      above)
+
 ## Project Structure
 
 ```
@@ -186,23 +211,30 @@ app/
   layout.tsx              Root layout: fonts, global metadata
   (site)/                 Route group: all public marketing pages
     layout.tsx             Navbar/Footer/WhatsApp/Analytics shell
-    page.tsx                Home
-    about/, practice-areas/, attorneys/, insights/, contact/,
+    page.tsx                Home (fetches blog posts, clients, testimonials)
+    about/, practice-areas/, blog/, contact/,
     privacy-policy/, terms/, legal-disclaimer/
   studio/[[...tool]]/      Embedded Sanity Studio (outside the (site) shell)
   api/contact/route.ts     Contact form → Resend
+  api/revalidate/route.ts  Sanity webhook → on-demand ISR revalidation
   sitemap.ts, robots.ts
 components/
   layout/    Navbar, Footer, WhatsAppButton
-  sections/  Hero, PageHeader, PracticeAreasGrid, CTABand, etc.
-  cards/     PracticeAreaCard, AttorneyCard, ArticleCard
+  sections/  Hero, PageHeader, PracticeAreasGrid, ClientLogos, Testimonials,
+             BlogTeaser, CTABand, etc.
+  cards/     PracticeAreaCard, ArticleCard
+  blog/      PortableTextRenderer (renders Sanity rich text)
   ui/        Button, SectionHeader, Breadcrumbs, FAQAccordion
   forms/     ContactForm
   seo/       JSON-LD components
+  analytics/ TrackedPhoneLink, TrackedWhatsAppLink (GA4 event wrappers)
 lib/
-  content/   Typed content + placeholder data (see "Content Model" above)
+  content/   Firm info + practice areas (see "Content Model" above)
+  analytics.ts  GA4 event helpers
   seo.ts, motion.ts, utils.ts, validation.ts
 sanity/
   schemaTypes/  Document schemas for every content type
-  lib/client.ts  Sanity client (not yet wired into any page)
+  lib/client.ts  Sanity client (live)
+  lib/queries.ts GROQ queries used by the site
+  lib/fetch.ts   Cached fetch wrapper + image URL resolver
 ```

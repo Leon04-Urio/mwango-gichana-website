@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { practiceAreas } from "@/lib/content/practiceAreas";
-import { attorneys } from "@/lib/content/attorneys";
-import { articles } from "@/lib/content/articles";
+import { sanityClient } from "@/sanity/lib/client";
+import { articleListQuery } from "@/sanity/lib/queries";
+import type { ArticleSummary } from "@/sanity/lib/types";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.8 },
@@ -13,8 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    { url: `${SITE_URL}/attorneys`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE_URL}/insights`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/contact`, changeFrequency: "yearly", priority: 0.6 },
     { url: `${SITE_URL}/privacy-policy`, changeFrequency: "yearly", priority: 0.2 },
     { url: `${SITE_URL}/terms`, changeFrequency: "yearly", priority: 0.2 },
@@ -29,23 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  const attorneyRoutes: MetadataRoute.Sitemap = attorneys.map((a) => ({
-    url: `${SITE_URL}/attorneys/${a.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
+  const articles = await sanityClient.fetch<ArticleSummary[]>(articleListQuery);
   const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
-    url: `${SITE_URL}/insights/${article.slug}`,
+    url: `${SITE_URL}/blog/${article.slug}`,
     lastModified: article.updatedAt,
     changeFrequency: "monthly",
     priority: 0.65,
   }));
 
-  return [
-    ...staticRoutes,
-    ...practiceAreaRoutes,
-    ...attorneyRoutes,
-    ...articleRoutes,
-  ];
+  return [...staticRoutes, ...practiceAreaRoutes, ...articleRoutes];
 }
