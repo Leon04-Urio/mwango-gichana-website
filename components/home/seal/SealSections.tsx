@@ -22,9 +22,9 @@ const inView = {
 /* One image, one sentence. */
 export function SealIntro() {
   return (
-    <section className="bg-ivory py-16 sm:py-40">
-      <div className="mx-auto grid max-w-8xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-12 lg:gap-24 lg:px-10">
-        <motion.div {...inView} variants={fadeUp} className="lg:col-span-5">
+    <section className="bg-ivory py-12 sm:py-40">
+      <div className="mx-auto grid max-w-8xl grid-cols-1 items-center gap-8 px-6 lg:grid-cols-12 lg:gap-24 lg:px-10">
+        <motion.div {...inView} variants={fadeUp} className="hidden lg:col-span-5 lg:block">
           {/* Photo container. Add the firm's photo here when it is ready. */}
           <div className="relative flex aspect-[4/5] w-full items-center justify-center border border-border-hairline bg-ivory-dim">
             <span className="text-sm uppercase tracking-[0.2em] text-charcoal">Img place holder</span>
@@ -33,21 +33,25 @@ export function SealIntro() {
 
         <motion.div {...inView} variants={fadeUp} className="lg:col-span-7">
           <span className="block h-px w-14 bg-gold-500" aria-hidden="true" />
-          <h2 className="font-display display-light mt-8 max-w-2xl text-3xl leading-[1.15] text-balance text-navy-950 sm:text-4xl lg:text-5xl">
+          <h2 className="font-display display-light mt-6 max-w-2xl text-2xl leading-[1.15] text-balance text-navy-950 sm:mt-8 sm:text-4xl lg:text-5xl">
             A boutique practice, rooted in Kajiado South.
           </h2>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-charcoal">
+          {/* Phones only: the photo container sits under the heading. */}
+          <div className="relative mt-5 flex aspect-[2/1] w-full items-center justify-center border border-border-hairline bg-ivory-dim lg:hidden">
+            <span className="text-sm uppercase tracking-[0.2em] text-charcoal">Img place holder</span>
+          </div>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-charcoal sm:mt-8 sm:text-lg">
             Founded to bring Nairobi-calibre legal counsel to the Amboseli ecosystem, delivered by
             advocates who understand the land, the communities, and the issues unique to this part
             of Kenya.
           </p>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-charcoal">
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-charcoal sm:mt-5 sm:text-lg">
             We are a general practice firm with particular depth in land and environment, family and
             succession, corporate and commercial matters, and litigation and dispute resolution.
           </p>
           <Link
             href="/about"
-            className="focus-ring group mt-10 inline-flex items-center gap-2 border-b border-gold-500 pb-1 text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors hover:text-gold-600"
+            className="focus-ring group mt-7 inline-flex items-center gap-2 border-b border-gold-500 pb-1 text-xs uppercase sm:mt-10 sm:text-sm tracking-[0.2em] text-navy-900 transition-colors hover:text-gold-600"
           >
             The firm
             <ArrowUpRight className="size-4 text-gold-600" aria-hidden="true" />
@@ -66,7 +70,7 @@ export function SealPractice() {
       <div className="mx-auto max-w-8xl px-6 lg:px-10">
         <motion.div {...inView} variants={fadeUp}>
           <span className="block h-px w-14 bg-gold-400" aria-hidden="true" />
-          <h2 className="font-display display-light mt-10 text-4xl leading-[1.1] sm:text-6xl">
+          <h2 className="font-display display-light mt-6 text-3xl leading-[1.1] sm:mt-10 sm:text-6xl">
             Practice areas
           </h2>
         </motion.div>
@@ -74,7 +78,7 @@ export function SealPractice() {
         <motion.div
           {...inView}
           variants={fadeUp}
-          className="mt-16 flex h-[40rem] flex-col gap-2 md:h-[34rem] md:flex-row"
+          className="mt-8 flex h-[30rem] flex-col gap-2 sm:mt-16 sm:h-[40rem] md:h-[34rem] md:flex-row"
         >
           {practiceAreas.map((area, i) => {
             const on = active === i;
@@ -141,18 +145,18 @@ export function SealClose() {
     <section className="bg-paper py-28 text-center text-navy-950 sm:py-40">
       <motion.div {...inView} variants={fadeUp} className="mx-auto max-w-3xl px-6">
         <span className="mx-auto block h-px w-14 bg-gold-500" aria-hidden="true" />
-        <h2 className="font-display display-light mt-10 text-4xl leading-[1.1] text-balance sm:text-6xl">
+        <h2 className="font-display display-light mt-6 text-3xl leading-[1.1] text-balance sm:mt-10 sm:text-6xl">
           Speak to an advocate
         </h2>
-        <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-charcoal">
+        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-charcoal sm:mt-8 sm:text-lg">
           Call or message us directly, or request a consultation. We respond promptly and in
           confidence.
         </p>
-        <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-5">
           <TrackedPhoneLink
             href={firm.contact.phoneHref}
             location="home_close"
-            className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900 bg-navy-900 px-9 py-4 text-sm font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-300 hover:bg-transparent hover:text-navy-900"
+            className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900 bg-navy-900 px-7 py-3.5 text-xs sm:px-9 sm:py-4 sm:text-sm font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-300 hover:bg-transparent hover:text-navy-900"
           >
             <Phone className="size-4" aria-hidden="true" />
             {firm.contact.phoneDisplay}
@@ -160,7 +164,7 @@ export function SealClose() {
           {firm.contact.whatsappNumber && (
             <TrackedWhatsAppLink
               href={whatsappHref(genericMessage)}
-              className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900/40 px-9 py-4 text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors duration-300 hover:bg-navy-900 hover:text-ivory"
+              className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900/40 px-7 py-3.5 text-xs sm:px-9 sm:py-4 sm:text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors duration-300 hover:bg-navy-900 hover:text-ivory"
             >
               <WhatsAppIcon className="size-4" />
               WhatsApp
@@ -169,7 +173,7 @@ export function SealClose() {
         </div>
         <Link
           href="/contact"
-          className="focus-ring mt-10 inline-block border-b border-gold-500 pb-1 text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors hover:text-gold-600"
+          className="focus-ring mt-7 inline-block border-b border-gold-500 pb-1 text-xs sm:mt-10 sm:text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors hover:text-gold-600"
         >
           Request a consultation
         </Link>

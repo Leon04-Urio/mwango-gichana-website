@@ -22,7 +22,7 @@ export function ReachAndClients() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
             <SectionHeader eyebrow="Geographic Reach" title="Where We Practice" />
-            <p className="mt-6 leading-relaxed text-charcoal">
+            <p className="mt-4 text-[0.95rem] leading-relaxed sm:mt-6 sm:text-base text-charcoal">
               Based in {firm.location.town}, {firm.location.subCounty}, we serve clients throughout{" "}
               {firm.location.county} and the wider Amboseli ecosystem, appearing before:
             </p>

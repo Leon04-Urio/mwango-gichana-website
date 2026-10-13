@@ -136,11 +136,11 @@ export default async function ArticlePage({
                 {article.author || "Mwango Gichana & Co. Advocates"}
               </span>
             </span>
-            <span aria-hidden="true">|</span>
+            <span aria-hidden="true" className="hidden sm:inline">|</span>
             <span>Published {formatDate(article.publishedAt)}</span>
             {article.updatedAt && article.updatedAt !== article.publishedAt && (
               <>
-                <span aria-hidden="true">|</span>
+                <span aria-hidden="true" className="hidden sm:inline">|</span>
                 <span>Updated {formatDate(article.updatedAt)}</span>
               </>
             )}

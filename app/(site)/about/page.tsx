@@ -33,7 +33,7 @@ export default function AboutPage() {
           </div>
           <div className="relative lg:col-span-5">
             {/* Photo container. Add the firm's photo here when it is ready. */}
-            <div className="relative flex aspect-[4/5] w-full items-center justify-center border border-border-hairline bg-ivory-dim">
+            <div className="relative flex aspect-[2/1] w-full items-center lg:aspect-[4/5] justify-center border border-border-hairline bg-ivory-dim">
               <span className="text-sm uppercase tracking-[0.2em] text-charcoal">Img place holder</span>
             </div>
             <div
