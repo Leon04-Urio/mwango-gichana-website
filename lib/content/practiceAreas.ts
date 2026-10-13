@@ -7,10 +7,10 @@ export const practiceAreas: PracticeArea[] = [
     shortTitle: "Land & Environment",
     icon: "landPlot",
     summary:
-      "Advising individuals, families, SMEs, conservancies, NGOs and diaspora investors on land and environmental matters across Kajiado County — from the first title search to the final registration, and every dispute in between.",
+      "Advising individuals, families, SMEs, conservancies, NGOs and diaspora investors on land and environmental matters across Kajiado County, from the first title search to the final registration, and every dispute in between.",
     intro: [
-      "Land is the single most contested — and most consequential — legal subject in Kajiado South. Between group ranch subdivision, conservancy agreements, and rapid land-use change around the Amboseli ecosystem, ownership questions here carry a history that a standard title search will not always reveal.",
-      "We advise individuals, families, SMEs, conservancies, NGOs, and diaspora investors on the full spectrum of land and environmental matters — from the first title search to the final registration, and every dispute in between.",
+      "Land is the single most contested, and most consequential, legal subject in Kajiado South. Between group ranch subdivision, conservancy agreements, and rapid land use change around the Amboseli ecosystem, ownership questions here carry a history that a standard title search will not always reveal.",
+      "We advise individuals, families, SMEs, conservancies, NGOs, and diaspora investors on the full spectrum of land and environmental matters, from the first title search to the final registration, and every dispute in between.",
     ],
     services: [
       {
@@ -56,18 +56,18 @@ export const practiceAreas: PracticeArea[] = [
     commonProblems: [
       "Uncertainty over whether a parcel carved from a subdivided group ranch has a clean title.",
       "Disputes with neighbours or family members over boundaries or historical land allocations.",
-      "Conservancies and community groups needing enforceable, well-drafted resource-sharing agreements.",
+      "Conservancies and community groups needing enforceable, well drafted resource sharing agreements.",
       "Investors and diaspora buyers unable to physically verify land history before purchase.",
       "Landowners facing compulsory acquisition without a clear view of their compensation rights.",
     ],
     howWeAssist: [
-      "We conduct thorough due diligence — including group ranch and registry history — before you commit to a transaction.",
+      "We conduct thorough due diligence, including group ranch and registry history, before you commit to a transaction.",
       "We draft and review sale agreements, leases, and conservancy/community agreements to protect your interests.",
       "We represent landowners and communities in negotiations with county and national government over acquisition and compensation.",
       "We litigate land disputes before the Environment and Land Court where negotiation is not enough.",
     ],
     kenyanContext:
-      "Land in Kajiado South sits at the intersection of the Community Land Act 2016, the historical subdivision of group ranches, and the regulatory framework administered by NEMA and the county planning authority. Matters that look straightforward on a title deed can carry unresolved group ranch history — this is a large part of why local due diligence matters.",
+      "Land in Kajiado South sits at the intersection of the Community Land Act 2016, the historical subdivision of group ranches, and the regulatory framework administered by NEMA and the county planning authority. Matters that look straightforward on a title deed can carry unresolved group ranch history, this is a large part of why local due diligence matters.",
     faqs: [
       {
         question: "How long does a land title search take in Kajiado County?",
@@ -78,13 +78,13 @@ export const practiceAreas: PracticeArea[] = [
         question:
           "Can diaspora clients complete a land purchase without travelling to Kenya?",
         answer:
-          "In many cases, yes — through a registered power of attorney and remote instructions, with our firm handling due diligence, documentation, and registration locally. We'll confirm what's feasible for your specific transaction.",
+          "In many cases, yes, through a registered power of attorney and remote instructions, with our firm handling due diligence, documentation, and registration locally. We'll confirm what's feasible for your specific transaction.",
       },
       {
         question:
           "What should I do before buying land near a conservancy or group ranch?",
         answer:
-          "Commission a full title and land-history investigation before signing anything or making payment. Conservancy-adjacent and former group ranch land can carry restrictions or competing claims that a basic search will not surface.",
+          "Commission a full title and land history investigation before signing anything or making payment. Conservancy adjacent and former group ranch land can carry restrictions or competing claims that a basic search will not surface.",
       },
     ],
     seoKeywords: [
@@ -104,10 +104,10 @@ export const practiceAreas: PracticeArea[] = [
     shortTitle: "Family & Succession",
     icon: "scale",
     summary:
-      "Representing individuals and families in contentious and non-contentious family and succession matters — from protecting a spouse's rights in divorce to ensuring a deceased parent's estate reaches the right hands.",
+      "Representing individuals and families in contentious and non contentious family and succession matters, from protecting a spouse's rights in divorce to ensuring a deceased parent's estate reaches the right hands.",
     intro: [
       "Family matters demand both technical precision and human sensitivity. We handle them with both.",
-      "We represent individuals and families in contentious and non-contentious family and succession matters — from protecting a spouse's rights in divorce to ensuring a deceased parent's estate reaches the right hands.",
+      "We represent individuals and families in contentious and non contentious family and succession matters, from protecting a spouse's rights in divorce to ensuring a deceased parent's estate reaches the right hands.",
     ],
     services: [
       {
@@ -138,7 +138,7 @@ export const practiceAreas: PracticeArea[] = [
       {
         title: "Adoption & Guardianship",
         description:
-          "Guiding families through court-supervised adoption and guardianship processes.",
+          "Guiding families through court supervised adoption and guardianship processes.",
       },
       {
         title: "Paternity & Parental Rights",
@@ -157,7 +157,7 @@ export const practiceAreas: PracticeArea[] = [
     ],
     commonProblems: [
       "A spouse unsure of their rights over matrimonial property, including land, during separation.",
-      "Families needing to administer an estate — often involving land — without a valid will in place.",
+      "Families needing to administer an estate, often involving land, without a valid will in place.",
       "Disputes among beneficiaries over the distribution of a deceased relative's property.",
       "Parents needing enforceable custody, access, or maintenance arrangements.",
       "Individuals seeking urgent protection from domestic violence.",
@@ -169,24 +169,24 @@ export const practiceAreas: PracticeArea[] = [
       "We draft prenuptial, postnuptial, and settlement agreements to prevent disputes before they arise.",
     ],
     kenyanContext:
-      "Succession in Kenya is governed primarily by the Law of Succession Act, with matrimonial property matters shaped by the Matrimonial Property Act and constitutional protections. Where an estate includes land — common in Kajiado County — succession and land law questions often need to be handled together.",
+      "Succession in Kenya is governed primarily by the Law of Succession Act, with matrimonial property matters shaped by the Matrimonial Property Act and constitutional protections. Where an estate includes land, common in Kajiado County, succession and land law questions often need to be handled together.",
     faqs: [
       {
         question:
           "What happens if a family member dies without a will in Kenya?",
         answer:
-          "Their estate is distributed according to the rules of intestate succession under the Law of Succession Act, and the family will typically need to apply for letters of administration before assets — including land — can be transferred to beneficiaries.",
+          "Their estate is distributed according to the rules of intestate succession under the Law of Succession Act, and the family will typically need to apply for letters of administration before assets, including land, can be transferred to beneficiaries.",
       },
       {
         question: "How is matrimonial property divided in a Kenyan divorce?",
         answer:
-          "Kenyan law looks at each spouse's contribution — financial and non-financial — to property acquired during the marriage. Outcomes are fact-specific, which is why early legal advice matters.",
+          "Kenyan law looks at each spouse's contribution, financial and non financial, to property acquired during the marriage. Outcomes are fact specific, which is why early legal advice matters.",
       },
       {
         question:
           "Can succession matters involving land in Kajiado County get complicated?",
         answer:
-          "Yes — where an estate includes land originating from a group ranch or with an unclear title history, succession and land-law issues often need to be resolved together. We handle both.",
+          "Yes, where an estate includes land originating from a group ranch or with an unclear title history, succession and land law issues often need to be resolved together. We handle both.",
       },
     ],
     seoKeywords: [
@@ -238,7 +238,7 @@ export const practiceAreas: PracticeArea[] = [
       },
       {
         title: "Regulatory Compliance",
-        description: "Sector-specific legal guidance for businesses.",
+        description: "Sector specific legal guidance for businesses.",
       },
       {
         title: "Debt Recovery",
@@ -247,7 +247,7 @@ export const practiceAreas: PracticeArea[] = [
       },
     ],
     commonProblems: [
-      "First-time entrepreneurs unsure which business structure suits them.",
+      "First time entrepreneurs unsure which business structure suits them.",
       "NGOs and CBOs needing compliant registration and governance documents.",
       "Businesses operating on undocumented or poorly drafted contracts.",
       "Employers needing employment contracts and policies aligned with the Employment Act.",
@@ -263,9 +263,9 @@ export const practiceAreas: PracticeArea[] = [
     faqs: [
       {
         question:
-          "What business structure should I choose in Kenya — sole proprietorship, partnership, or company?",
+          "What business structure should I choose in Kenya, sole proprietorship, partnership, or company?",
         answer:
-          "It depends on your liability exposure, funding plans, and tax position. We advise on the structure that fits your specific goals rather than a one-size-fits-all answer.",
+          "It depends on your liability exposure, funding plans, and tax position. We advise on the structure that fits your specific goals rather than a one size fits all answer.",
       },
       {
         question: "Do NGOs and CBOs need a lawyer to register in Kenya?",
@@ -276,7 +276,7 @@ export const practiceAreas: PracticeArea[] = [
         question:
           "What is the first step in recovering a business debt in Kenya?",
         answer:
-          "Typically a formal demand letter, followed — if unresolved — by civil proceedings. We assess the strongest and most cost-effective route for your specific case.",
+          "Typically a formal demand letter, followed, if unresolved, by civil proceedings. We assess the strongest and most cost effective route for your specific case.",
       },
     ],
     seoKeywords: [
@@ -296,9 +296,9 @@ export const practiceAreas: PracticeArea[] = [
     shortTitle: "Litigation & Disputes",
     icon: "gavel",
     summary:
-      "When a matter reaches court — or needs to be kept out of it — we bring both strategic thinking and courtroom experience before the Magistrates' Courts, High Court, and Environment and Land Court.",
+      "When a matter reaches court, or needs to be kept out of it, we bring both strategic thinking and courtroom experience before the Magistrates' Courts, High Court, and Environment and Land Court.",
     intro: [
-      "When a matter reaches court — or needs to be kept out of it — we bring both strategic thinking and courtroom experience.",
+      "When a matter reaches court, or needs to be kept out of it, we bring both strategic thinking and courtroom experience.",
       "We appear before the Chief Magistrate's Court, High Court, and Environment and Land Court, handling civil, criminal, commercial, and family litigation. We also advise on and facilitate mediation and alternative dispute resolution where it serves our clients' interests.",
     ],
     services: [
@@ -335,7 +335,7 @@ export const practiceAreas: PracticeArea[] = [
       {
         title: "Alternative Dispute Resolution",
         description:
-          "Mediation and negotiated settlement across commercial, family, and land matters; court-annexed mediation representation.",
+          "Mediation and negotiated settlement across commercial, family, and land matters; court annexed mediation representation.",
       },
     ],
     commonProblems: [
@@ -365,7 +365,7 @@ export const practiceAreas: PracticeArea[] = [
         question:
           "What can I do if someone owes me money under a court judgment but won't pay?",
         answer:
-          "You can pursue enforcement — including garnishee proceedings or attachment of assets through licensed auctioneers. We handle judgment enforcement on behalf of our clients.",
+          "You can pursue enforcement, including garnishee proceedings or attachment of assets through licensed auctioneers. We handle judgment enforcement on behalf of our clients.",
       },
     ],
     seoKeywords: [
@@ -377,7 +377,7 @@ export const practiceAreas: PracticeArea[] = [
       "advocate Kimana",
     ],
     metaDescription:
-      "Civil, criminal, land, family and debt-recovery litigation, plus mediation and ADR, from Mwango Gichana & Co. Advocates in Kajiado South.",
+      "Civil, criminal, land, family and debt recovery litigation, plus mediation and ADR, from Mwango Gichana & Co. Advocates in Kajiado South.",
   },
   {
     slug: "legal-research-opinions-due-diligence",
@@ -385,9 +385,9 @@ export const practiceAreas: PracticeArea[] = [
     shortTitle: "Research & Due Diligence",
     icon: "search",
     summary:
-      "Research and legal opinion services for clients who need authoritative answers before they act — whether an investor conducting due diligence, an NGO assessing regulatory exposure, or a lawyer seeking a second opinion.",
+      "Research and legal opinion services for clients who need authoritative answers before they act, whether an investor conducting due diligence, an NGO assessing regulatory exposure, or a lawyer seeking a second opinion.",
     intro: [
-      "Sound decisions begin with sound information. We provide research and legal opinion services for clients who need authoritative answers before they act — whether that is an investor conducting due diligence, an NGO assessing regulatory exposure, or a lawyer seeking a second opinion on a complex point of law.",
+      "Sound decisions begin with sound information. We provide research and legal opinion services for clients who need authoritative answers before they act, whether that is an investor conducting due diligence, an NGO assessing regulatory exposure, or a lawyer seeking a second opinion on a complex point of law.",
     ],
     services: [
       {
@@ -417,14 +417,14 @@ export const practiceAreas: PracticeArea[] = [
       },
     ],
     commonProblems: [
-      "Investors needing a clear-eyed risk assessment before committing capital to a Kajiado County transaction.",
+      "Investors needing a clear eyed risk assessment before committing capital to a Kajiado County transaction.",
       "NGOs and conservancies needing to understand their regulatory exposure before proceeding with a project.",
       "Lawyers and organisations wanting an independent second opinion on a complex legal question.",
       "Businesses needing to understand how a proposed law or policy change will affect their operations.",
     ],
     howWeAssist: [
-      "We produce thorough, evidence-based title and land due diligence reports before you commit to a transaction.",
-      "We issue written legal opinions that can be relied on for internal decision-making or presented to third parties.",
+      "We produce thorough, evidence based title and land due diligence reports before you commit to a transaction.",
+      "We issue written legal opinions that can be relied on for internal decision making or presented to third parties.",
       "We support litigation teams with case law research and strategic analysis.",
       "We monitor and analyse regulatory and legislative developments relevant to our clients' sectors.",
     ],
@@ -432,13 +432,13 @@ export const practiceAreas: PracticeArea[] = [
       {
         question: "When should I commission a legal opinion?",
         answer:
-          "Before any significant transaction, investment, or decision where the legal risk is unclear — a written opinion gives you a documented, reasoned basis for proceeding (or not).",
+          "Before any significant transaction, investment, or decision where the legal risk is unclear, a written opinion gives you a documented, reasoned basis for proceeding (or not).",
       },
       {
         question:
           "Can you conduct due diligence on land I haven't purchased yet?",
         answer:
-          "Yes — pre-purchase due diligence is exactly when this service is most valuable. We recommend commissioning it before you sign an agreement or make any payment.",
+          "Yes, pre purchase due diligence is exactly when this service is most valuable. We recommend commissioning it before you sign an agreement or make any payment.",
       },
     ],
     seoKeywords: [

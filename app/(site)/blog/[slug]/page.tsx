@@ -2,16 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { ArticleCard } from "@/components/cards/ArticleCard";
+import { ArticleCard, type ArticleCardData } from "@/components/cards/ArticleCard";
 import { ArticleJsonLd } from "@/components/seo/ArticleJsonLd";
-import { CTABand } from "@/components/sections/CTABand";
 import { PortableTextRenderer, extractHeadings } from "@/components/blog/PortableTextRenderer";
 import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
 import { sanityClient } from "@/sanity/lib/client";
-import { articleBySlugQuery, articleSlugsQuery } from "@/sanity/lib/queries";
-import type { ArticleFull } from "@/sanity/lib/types";
+import { articleBySlugQuery, articleListQuery, articleSlugsQuery } from "@/sanity/lib/queries";
+import type { ArticleFull, ArticleSummary } from "@/sanity/lib/types";
 import { getPracticeAreaBySlug } from "@/lib/content/practiceAreas";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
+import { ShareLinks } from "@/components/blog/ShareLinks";
 
 export async function generateStaticParams() {
   const slugs = await sanityClient.fetch<{ slug: string }[]>(articleSlugsQuery);
@@ -58,6 +58,20 @@ export default async function ArticlePage({
   const coverImage = resolveImage(article.coverImage, article.title);
   const headings = extractHeadings(article.content);
 
+  const allArticles = await sanityFetch<ArticleSummary[]>(articleListQuery);
+  const latest: ArticleCardData[] = allArticles
+    .filter((a) => a.slug !== article.slug)
+    .slice(0, 3)
+    .map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      excerpt: a.excerpt,
+      publishedAt: a.publishedAt,
+      practiceAreaSlug: a.practiceAreaSlug,
+      coverImage: resolveImage(a.coverImage, a.title),
+    }));
+  const hasSidebar = headings.length > 1 || latest.length > 0;
+
   return (
     <>
       <ArticleJsonLd
@@ -72,40 +86,61 @@ export default async function ArticlePage({
         }}
       />
 
-      <div className="border-b border-border-hairline bg-ivory-dim">
-        <div className="mx-auto max-w-3xl px-6 pb-12 pt-32 sm:pt-36 lg:pt-40">
+      <div className="bg-ivory-dim">
+        <div className="mx-auto max-w-5xl px-6 pb-5 pt-24 sm:pt-28 lg:px-10">
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Blog", href: "/blog" },
+              { label: "Blog & Insights", href: "/blog" },
               { label: article.title, href: `/blog/${article.slug}` },
             ]}
           />
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+        </div>
+      </div>
+
+      <div className="relative overflow-hidden bg-charcoal">
+        {coverImage && (
+          <>
+            <Image
+              src={coverImage.src}
+              alt=""
+              fill
+              sizes="100vw"
+              priority
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0 bg-black/40"
+              aria-hidden="true"
+            />
+          </>
+        )}
+        <div className="relative mx-auto max-w-5xl px-6 py-10 lg:px-10 [text-shadow:0_1px_14px_rgba(0,0,0,0.65)] sm:py-12">
+          <div className="flex flex-wrap items-center gap-3">
             {practiceArea && (
               <Link
-                href={`/practice-areas/${practiceArea.slug}`}
-                className="focus-ring text-xs font-semibold uppercase tracking-[0.15em] text-gold-600 hover:underline"
+                href={`/practice-areas#${practiceArea.slug}`}
+                className="focus-ring text-xs font-medium uppercase tracking-[0.15em] text-gold-400 hover:underline"
               >
                 {practiceArea.shortTitle}
               </Link>
             )}
           </div>
-          <h1 className="mt-4 font-display text-3xl leading-tight text-balance text-navy-950 sm:text-4xl md:text-5xl">
+          <h1 className="mt-3 font-display text-2xl leading-tight text-balance text-ivory sm:text-3xl md:text-4xl">
             {article.title}
           </h1>
-          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-charcoal-soft">
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ivory/80">
             <span>
               By{" "}
-              <span className="font-medium text-navy-950">
+              <span className="font-medium text-ivory">
                 {article.author || "Mwango Gichana & Co. Advocates"}
               </span>
             </span>
-            <span aria-hidden="true">&middot;</span>
+            <span aria-hidden="true">|</span>
             <span>Published {formatDate(article.publishedAt)}</span>
             {article.updatedAt && article.updatedAt !== article.publishedAt && (
               <>
-                <span aria-hidden="true">&middot;</span>
+                <span aria-hidden="true">|</span>
                 <span>Updated {formatDate(article.updatedAt)}</span>
               </>
             )}
@@ -113,54 +148,22 @@ export default async function ArticlePage({
         </div>
       </div>
 
-      {coverImage && (
-        <div className="relative aspect-[21/9] w-full overflow-hidden bg-navy-900">
-          <Image
-            src={coverImage.src}
-            alt={coverImage.alt}
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover"
-          />
-        </div>
-      )}
-
-      <div className="mx-auto grid max-w-8xl grid-cols-1 gap-16 px-6 py-16 lg:grid-cols-12 lg:gap-12 lg:px-10 lg:py-20">
-        {headings.length > 1 && (
-          <aside className="order-2 lg:order-1 lg:col-span-3">
-            <div className="lg:sticky lg:top-32">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-charcoal-soft">
-                In This Article
-              </p>
-              <ul className="mt-4 space-y-2.5 border-l border-border-hairline">
-                {headings.map((h) => (
-                  <li key={h.id}>
-                    <a
-                      href={`#${h.id}`}
-                      className="focus-ring block border-l-2 border-transparent pl-4 -ml-px text-sm text-charcoal-soft transition-colors hover:border-gold-500 hover:text-navy-950"
-                    >
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
-        )}
+      <div
+        className={`mx-auto grid max-w-5xl grid-cols-1 gap-14 px-6 py-14 lg:gap-20 lg:px-10 lg:py-20 ${hasSidebar ? "lg:grid-cols-[minmax(0,40rem)_15rem] lg:justify-between" : ""}`}
+      >
 
         <article
-          className={`order-1 max-w-3xl lg:order-2 ${headings.length > 1 ? "lg:col-span-9" : "lg:col-span-8 lg:col-start-3"}`}
+          className="order-1 mx-auto w-full max-w-[40rem] lg:mx-0"
         >
-          <div className="prose-article space-y-5 text-charcoal leading-relaxed">
+          <div className="prose-article space-y-6 text-charcoal">
             <PortableTextRenderer value={article.content} />
           </div>
 
           <div className="mt-14 border-t border-border-hairline pt-8">
-            <p className="text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+            <p className="text-xs font-medium uppercase tracking-wide text-charcoal">
               Legal Disclaimer
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-charcoal-soft">
+            <p className="mt-2 text-sm leading-relaxed text-charcoal">
               This article provides general information and does not
               constitute legal advice. For advice regarding your specific
               circumstances, consult a qualified advocate. Read our full{" "}
@@ -174,7 +177,7 @@ export default async function ArticlePage({
           <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-border-hairline pt-8">
             {practiceArea && (
               <Link
-                href={`/practice-areas/${practiceArea.slug}`}
+                href={`/practice-areas#${practiceArea.slug}`}
                 className="focus-ring inline-flex items-center border border-navy-900 bg-navy-900 px-5 py-3 text-sm font-medium text-ivory transition-colors hover:bg-navy-800"
               >
                 Learn About {practiceArea.shortTitle}
@@ -188,12 +191,61 @@ export default async function ArticlePage({
             </Link>
           </div>
         </article>
+        {hasSidebar && (
+          <aside className="order-2 xl:translate-x-12">
+            <div className="lg:sticky lg:top-32">
+              {headings.length > 1 && (
+                <>
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-charcoal">
+                  In This Article
+                </p>
+                <ul className="mt-4 space-y-2.5 border-l border-border-hairline">
+                  {headings.map((h) => (
+                    <li key={h.id}>
+                      <a
+                        href={`#${h.id}`}
+                        className="focus-ring block border-l-2 border-transparent pl-4 -ml-px text-sm text-charcoal transition-colors hover:border-gold-500 hover:text-navy-950"
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                </>
+              )}
+              {latest.length > 0 && (
+                <div className={headings.length > 1 ? "mt-12 border-t border-border-hairline pt-8" : ""}>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-charcoal">
+                    Latest Insights
+                  </p>
+                  <ul className="mt-5 space-y-6">
+                    {latest.map((post) => (
+                      <li key={post.slug}>
+                        <Link href={`/blog/${post.slug}`} className="focus-ring group block">
+                          <p className="text-xs uppercase tracking-[0.15em] text-charcoal">
+                            {formatDate(post.publishedAt)}
+                          </p>
+                          <p className="mt-1.5 font-display text-lg leading-snug text-navy-950 transition-colors group-hover:text-gold-600">
+                            {post.title}
+                          </p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div className={headings.length > 1 || latest.length > 0 ? "mt-12 border-t border-border-hairline pt-8" : ""}>
+                <ShareLinks url={`${SITE_URL}/blog/${article.slug}`} title={article.title} />
+              </div>
+            </div>
+          </aside>
+        )}
       </div>
 
       {article.relatedArticles?.length > 0 && (
         <section className="border-t border-border-hairline bg-ivory-dim py-20">
           <div className="mx-auto max-w-8xl px-6 lg:px-10">
-            <h2 className="font-display text-2xl text-navy-950">Related Posts</h2>
+            <h2 className="font-display text-xl text-navy-950">Related Posts</h2>
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {article.relatedArticles.map((related) => (
                 <ArticleCard
@@ -212,8 +264,6 @@ export default async function ArticlePage({
           </div>
         </section>
       )}
-
-      <CTABand />
     </>
   );
 }

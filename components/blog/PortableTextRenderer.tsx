@@ -20,7 +20,7 @@ const components: PortableTextComponents = {
     h2: ({ value, children }) => (
       <h2
         id={slugify(headingText(value))}
-        className="scroll-mt-32 pt-4 font-display text-2xl text-navy-950"
+        className="scroll-mt-32 pt-8 font-display text-2xl leading-snug text-navy-950"
       >
         {children}
       </h2>
@@ -28,25 +28,25 @@ const components: PortableTextComponents = {
     h3: ({ value, children }) => (
       <h3
         id={slugify(headingText(value))}
-        className="scroll-mt-32 pt-2 font-display text-xl text-navy-950"
+        className="scroll-mt-32 pt-4 font-display text-xl leading-snug text-navy-950"
       >
         {children}
       </h3>
     ),
-    normal: ({ children }) => <p className="text-base sm:text-lg">{children}</p>,
+    normal: ({ children }) => <p className="text-lg leading-[1.85]">{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-gold-500 pl-5 italic text-charcoal-soft">
+      <blockquote className="my-2 border-l-2 border-gold-500 py-1 pl-6 text-lg italic leading-[1.85] text-charcoal">
         {children}
       </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }) => <ul className="list-disc space-y-2 pl-5">{children}</ul>,
-    number: ({ children }) => <ol className="list-decimal space-y-2 pl-5">{children}</ol>,
+    bullet: ({ children }) => <ul className="list-disc space-y-3 pl-6 marker:text-gold-600">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal space-y-3 pl-6 marker:text-gold-600">{children}</ol>,
   },
   listItem: {
-    bullet: ({ children }) => <li className="text-base sm:text-lg">{children}</li>,
-    number: ({ children }) => <li className="text-base sm:text-lg">{children}</li>,
+    bullet: ({ children }) => <li className="pl-1 text-lg leading-[1.8]">{children}</li>,
+    number: ({ children }) => <li className="pl-1 text-lg leading-[1.8]">{children}</li>,
   },
   marks: {
     link: ({ value, children }) => (

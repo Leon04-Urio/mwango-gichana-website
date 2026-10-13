@@ -29,6 +29,7 @@ export interface ClientLogo {
   name: string;
   logo?: SanityImageRef;
   website?: string;
+  demoLogo?: string; // TEMP PREVIEW: local demo image
 }
 
 export interface Testimonial {

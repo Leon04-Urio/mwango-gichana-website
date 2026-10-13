@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
   revalidatePath("/");
   revalidatePath("/blog");
-  revalidatePath("/practice-areas/[slug]", "page");
+  revalidatePath("/practice-areas");
 
   if (body._type === "article" && body.slug?.current) {
     revalidatePath(`/blog/${body.slug.current}`);

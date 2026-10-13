@@ -39,17 +39,17 @@ export function ArticleCard({ article }: { article: ArticleCardData }) {
       </div>
       <div className="mt-5">
         {practiceArea && (
-          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gold-600">
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-gold-600">
             {practiceArea.shortTitle}
           </p>
         )}
         <h3 className="mt-2 font-display text-xl leading-snug text-navy-950 transition-colors group-hover:text-navy-800">
           {article.title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-charcoal-soft line-clamp-2">
+        <p className="mt-2 text-sm leading-relaxed text-charcoal line-clamp-2">
           {article.excerpt}
         </p>
-        <p className="mt-3 text-xs text-charcoal-soft/70">
+        <p className="mt-3 text-xs text-charcoal/70">
           {formatDate(article.publishedAt)}
         </p>
       </div>

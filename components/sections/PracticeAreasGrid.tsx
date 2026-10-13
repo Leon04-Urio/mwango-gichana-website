@@ -15,7 +15,7 @@ export function PracticeAreasGrid() {
           <SectionHeader
             eyebrow="What We Do"
             title="Practice Areas"
-            description="A general practice firm with particular depth across five areas — built around the legal needs of Kajiado South and the Amboseli ecosystem."
+            description="A general practice firm with particular depth across five areas, built around the legal needs of Kajiado South and the Amboseli ecosystem."
           />
           <div className="shrink-0">
             <Button href="/practice-areas" variant="secondary" showArrow>

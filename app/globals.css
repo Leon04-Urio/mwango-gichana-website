@@ -53,18 +53,38 @@
   --color-border-hairline: var(--color-border-hairline);
   --color-border-hairline-dark: var(--color-border-hairline-dark);
 
-  --font-display: var(--font-playfair);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-garamond);
+  --font-signature: var(--font-signature);
 
   --container-8xl: 100rem;
 }
 
-* {
-  border-color: var(--color-border-hairline);
+/* Layered so Tailwind's border-color utilities can override it; an unlayered
+   rule would beat every utility regardless of specificity. */
+@layer base {
+  * {
+    border-color: var(--color-border-hairline);
+  }
+}
+
+.font-display {
+  font-weight: 400;
+}
+
+/* Regular cut: hierarchy comes from size, not weight. */
+.font-display.display-regular {
+  font-weight: 400;
+}
+
+/* Medium cut for large headings: confident without the heavy 600. */
+.font-display.display-light {
+  font-weight: 400;
 }
 
 html {
   scroll-behavior: smooth;
+  font-size: 18px;
 }
 
 body {
@@ -98,4 +118,25 @@ body {
 .focus-ring:focus-visible {
   outline: 2px solid var(--color-gold-500);
   outline-offset: 3px;
+}
+
+/* Client logos: drift right to left, pause on hover, still for reduced motion. */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-left 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }

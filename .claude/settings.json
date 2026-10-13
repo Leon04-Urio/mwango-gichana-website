@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(disown)",
+      "Bash(rm -f C:/Users/HomePC/AppData/Local/Temp/claude/c--Users-HomePC-Desktop-law/a3a81e43-52e2-4637-afbc-3f4b5baa3d79/scratchpad/*.jpg)",
+      "Bash(node C:/Users/HomePC/AppData/Local/Temp/claude/c--Users-HomePC-Desktop-law/a3a81e43-52e2-4637-afbc-3f4b5baa3d79/scratchpad/cdp.cjs 'http://localhost:3000/practice-areas#environment-and-land-law' C:/Users/HomePC/AppData/Local/Temp/claude/c--Users-HomePC-Desktop-law/a3a81e43-52e2-4637-afbc-3f4b5baa3d79/scratchpad/p.jpg 1440)",
+      "Bash(node C:/Users/HomePC/AppData/Local/Temp/claude/c--Users-HomePC-Desktop-law/a3a81e43-52e2-4637-afbc-3f4b5baa3d79/scratchpad/cdp.cjs http://localhost:3000/ C:/Users/HomePC/AppData/Local/Temp/claude/c--Users-HomePC-Desktop-law/a3a81e43-52e2-4637-afbc-3f4b5baa3d79/scratchpad/h.jpg 1440)"
+    ]
+  }
+}

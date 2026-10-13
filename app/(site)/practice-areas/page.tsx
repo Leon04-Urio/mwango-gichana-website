@@ -1,13 +1,16 @@
 import { PageHeader } from "@/components/sections/PageHeader";
-import { PracticeAreaCard } from "@/components/cards/PracticeAreaCard";
-import { CTABand } from "@/components/sections/CTABand";
+import { PracticeTabs } from "@/components/practice/PracticeTabs";
+import type { RelatedPost } from "@/components/practice/AreaDetail";
+import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
+import { articleListQuery } from "@/sanity/lib/queries";
+import type { ArticleSummary } from "@/sanity/lib/types";
 import { practiceAreas } from "@/lib/content/practiceAreas";
 import { buildMetadata } from "@/lib/seo";
 import { firm } from "@/lib/content/firm";
 
 export const metadata = buildMetadata({
   title: "Practice Areas",
-  description: `Legal services offered by ${firm.name} across land & environment, family & succession, corporate & commercial law, litigation, and legal research — Kajiado South, Kenya.`,
+  description: `Legal services offered by ${firm.name} across land & environment, family & succession, corporate & commercial law, litigation, and legal research, Kajiado South, Kenya.`,
   path: "/practice-areas",
   keywords: [
     "law firm practice areas Kajiado",
@@ -18,10 +21,24 @@ export const metadata = buildMetadata({
   ],
 });
 
-export default function PracticeAreasPage() {
+export default async function PracticeAreasPage() {
+  const articles = await sanityFetch<ArticleSummary[]>(articleListQuery);
+  const related: Record<string, RelatedPost[]> = {};
+  for (const a of articles) {
+    if (!a.practiceAreaSlug) continue;
+    (related[a.practiceAreaSlug] ??= []).push({
+      slug: a.slug,
+      title: a.title,
+      excerpt: a.excerpt,
+      publishedAt: a.publishedAt,
+      coverImage: resolveImage(a.coverImage, a.title),
+    });
+  }
+
   return (
     <>
       <PageHeader
+        regular
         eyebrow="What We Do"
         title="Practice Areas"
         description="A general practice firm with particular depth across five core areas, built around the legal needs of Kajiado South and the Amboseli ecosystem."
@@ -31,17 +48,7 @@ export default function PracticeAreasPage() {
         ]}
       />
 
-      <section className="bg-ivory py-20 sm:py-24">
-        <div className="mx-auto max-w-8xl px-6 lg:px-10">
-          <div className="grid grid-cols-1 gap-px bg-border-hairline sm:grid-cols-2 lg:grid-cols-3">
-            {practiceAreas.map((area, index) => (
-              <PracticeAreaCard key={area.slug} area={area} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABand />
+      <PracticeTabs areas={practiceAreas} related={related} />
     </>
   );
 }

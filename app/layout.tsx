@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant_Garamond, Alex_Brush, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/seo";
 import { firm } from "@/lib/content/firm";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const alexBrush = Alex_Brush({
+  variable: "--font-signature",
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const ebGaramond = EB_Garamond({
+  variable: "--font-garamond",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -29,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${alexBrush.variable} ${ebGaramond.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ivory text-charcoal">
         {children}

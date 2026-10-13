@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import type { FAQ } from "@/lib/content/types";
 
 export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -35,9 +35,9 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               aria-expanded={isOpen}
-              className="focus-ring flex w-full items-center justify-between gap-6 py-6 text-left"
+              className="focus-ring flex w-full items-center justify-between gap-6 py-4 text-left"
             >
-              <span className="font-display text-lg text-navy-950 sm:text-xl">
+              <span className="font-display display-regular text-base text-navy-950 sm:text-lg">
                 {faq.question}
               </span>
               <Plus
@@ -57,7 +57,7 @@ export function FAQAccordion({ faqs }: { faqs: FAQ[] }) {
               )}
             >
               <div className="min-h-0">
-                <p className="pb-6 text-charcoal-soft leading-relaxed max-w-2xl">
+                <p className="pb-6 text-sm text-charcoal leading-relaxed max-w-2xl">
                   {faq.answer}
                 </p>
               </div>

@@ -8,7 +8,7 @@ import { trackContactFormSubmit } from "@/lib/analytics";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const inputClasses =
-  "focus-ring w-full border border-navy-900/20 bg-ivory px-4 py-3 text-sm text-navy-950 placeholder:text-charcoal-soft/50 transition-colors focus:border-navy-900";
+  "focus-ring w-full border border-navy-900/20 bg-ivory px-4 py-3 text-sm text-navy-950 placeholder:text-charcoal/50 transition-colors focus:border-navy-900";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -60,9 +60,9 @@ export function ContactForm() {
       <div className="flex flex-col items-start gap-3 border border-gold-500/40 bg-gold-500/5 p-8">
         <CircleCheck className="size-8 text-gold-600" aria-hidden="true" />
         <h3 className="font-display text-xl text-navy-950">
-          Thank you — your enquiry has been received.
+          Thank you, your enquiry has been received.
         </h3>
-        <p className="text-sm text-charcoal-soft">
+        <p className="text-sm text-charcoal">
           A member of our team will be in touch shortly. For urgent matters,
           please call or WhatsApp us directly.
         </p>
@@ -86,13 +86,13 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+          <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-wide text-charcoal">
             Full Name *
           </label>
           <input id="name" name="name" type="text" required className={inputClasses} />
         </div>
         <div>
-          <label htmlFor="email" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+          <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-wide text-charcoal">
             Email *
           </label>
           <input id="email" name="email" type="email" required className={inputClasses} />
@@ -101,13 +101,13 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="phone" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+          <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-wide text-charcoal">
             Phone Number
           </label>
           <input id="phone" name="phone" type="tel" className={inputClasses} />
         </div>
         <div>
-          <label htmlFor="practiceArea" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+          <label htmlFor="practiceArea" className="mb-2 block text-xs font-medium uppercase tracking-wide text-charcoal">
             Legal Service / Practice Area
           </label>
           <select id="practiceArea" name="practiceArea" className={inputClasses} defaultValue="">
@@ -123,7 +123,7 @@ export function ContactForm() {
       </div>
 
       <fieldset>
-        <legend className="mb-2 block text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+        <legend className="mb-2 block text-xs font-medium uppercase tracking-wide text-charcoal">
           Preferred Contact Method
         </legend>
         <div className="flex flex-wrap gap-6">
@@ -147,7 +147,7 @@ export function ContactForm() {
       </fieldset>
 
       <div>
-        <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-charcoal-soft">
+        <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-wide text-charcoal">
           Message *
         </label>
         <textarea
@@ -160,7 +160,7 @@ export function ContactForm() {
         />
       </div>
 
-      <label className="flex items-start gap-3 text-sm text-charcoal-soft">
+      <label className="flex items-start gap-3 text-sm text-charcoal">
         <input
           type="checkbox"
           name="consent"

@@ -41,7 +41,7 @@ export function AboutTeaser() {
           className="lg:col-span-7 lg:pl-4"
         >
           <SectionHeader eyebrow="Who We Are" title="Counsel That Understands the Ground It Stands On" />
-          <div className="mt-7 space-y-5 text-charcoal-soft leading-relaxed">
+          <div className="mt-7 space-y-5 text-charcoal leading-relaxed">
             {firm.aboutParagraphs.map((p) => (
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
@@ -53,7 +53,7 @@ export function AboutTeaser() {
                 <dt className="font-display text-lg text-navy-950">
                   {value.title}
                 </dt>
-                <dd className="mt-1.5 text-sm leading-relaxed text-charcoal-soft">
+                <dd className="mt-1.5 text-sm leading-relaxed text-charcoal">
                   {value.description}
                 </dd>
               </div>

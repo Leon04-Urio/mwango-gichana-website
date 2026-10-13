@@ -1,5 +1,6 @@
 import { firm } from "@/lib/content/firm";
 import { absoluteUrl } from "@/lib/seo";
+import { isPlaceholder } from "@/lib/utils";
 
 export function OrganizationJsonLd() {
   const jsonLd = {
@@ -12,7 +13,9 @@ export function OrganizationJsonLd() {
     email: firm.contact.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: firm.location.addressLine,
+      ...(!isPlaceholder(firm.location.addressLine) && {
+        streetAddress: firm.location.addressLine,
+      }),
       addressLocality: firm.location.town,
       addressRegion: firm.location.county,
       addressCountry: "KE",

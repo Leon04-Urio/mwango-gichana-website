@@ -27,14 +27,14 @@ export function PracticeAreaCard({
       <div>
         <div className="flex items-start justify-between">
           <Icon className="size-8 text-gold-600" aria-hidden="true" />
-          <span className="font-display text-sm text-charcoal-soft/40">
+          <span className="font-display text-sm text-charcoal/40">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
-        <h3 className="mt-6 font-display text-xl text-navy-950 sm:text-2xl">
+        <h3 className="mt-6 font-display text-xl text-navy-950">
           {area.shortTitle}
         </h3>
-        <p className="mt-3 text-sm leading-relaxed text-charcoal-soft">
+        <p className="mt-3 text-sm leading-relaxed text-charcoal">
           {area.summary}
         </p>
       </div>

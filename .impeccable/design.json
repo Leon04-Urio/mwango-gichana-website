@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-21T05:11:32.115897+00:00",
+  "title": "Design System: Mwango Gichana & Co. Advocates",
+  "extensions": {
+    "colorMeta": {
+      "navy-abyss": {
+        "role": "primary",
+        "displayName": "Abyss Navy",
+        "canonical": "#0b1424",
+        "tonalRamp": [
+          "#12213b",
+          "#203967",
+          "#2d5294",
+          "#3b6bc1",
+          "#668cd0",
+          "#92adde",
+          "#bfcfeb",
+          "#ebf0f9"
+        ]
+      },
+      "navy-deep": {
+        "role": "primary",
+        "displayName": "Chambers Navy",
+        "canonical": "#10192e",
+        "tonalRamp": [
+          "#141f39",
+          "#233664",
+          "#324e8f",
+          "#4165ba",
+          "#6a87cb",
+          "#96aada",
+          "#c1cde9",
+          "#ecf0f8"
+        ]
+      },
+      "navy-mid": {
+        "role": "primary",
+        "displayName": "Mid Navy",
+        "canonical": "#16233f",
+        "tonalRamp": [
+          "#142039",
+          "#233864",
+          "#32508f",
+          "#4168ba",
+          "#6a89cb",
+          "#96abda",
+          "#c1cee9",
+          "#ecf0f8"
+        ]
+      },
+      "navy-slate": {
+        "role": "primary",
+        "displayName": "Slate Navy",
+        "canonical": "#223257",
+        "tonalRamp": [
+          "#152037",
+          "#263861",
+          "#36508b",
+          "#4768b5",
+          "#6f89c7",
+          "#99acd7",
+          "#c3cee7",
+          "#edf0f8"
+        ]
+      },
+      "navy-dusk": {
+        "role": "primary",
+        "displayName": "Dusk Navy",
+        "canonical": "#33456f",
+        "tonalRamp": [
+          "#182134",
+          "#2a395c",
+          "#3d5284",
+          "#4f6bac",
+          "#768cc0",
+          "#9eadd2",
+          "#c6cfe5",
+          "#eef0f7"
+        ]
+      },
+      "gold-seal": {
+        "role": "secondary",
+        "displayName": "Seal Gold",
+        "canonical": "#b3903f",
+        "tonalRamp": [
+          "#392e14",
+          "#645023",
+          "#8f7332",
+          "#ba9641",
+          "#cbae6b",
+          "#dac596",
+          "#e9ddc1",
+          "#f8f5ec"
+        ]
+      },
+      "gold-bright": {
+        "role": "secondary",
+        "displayName": "Bright Gold",
+        "canonical": "#cfa94e",
+        "tonalRamp": [
+          "#3c2f10",
+          "#6a531d",
+          "#987729",
+          "#c69b36",
+          "#d4b261",
+          "#e1c98f",
+          "#eddfbd",
+          "#faf5eb"
+        ]
+      },
+      "gold-bronze": {
+        "role": "secondary",
+        "displayName": "Bronze Gold",
+        "canonical": "#7a6029",
+        "tonalRamp": [
+          "#392d13",
+          "#654f22",
+          "#917231",
+          "#bc943f",
+          "#cdad69",
+          "#dbc595",
+          "#eaddc0",
+          "#f9f5ec"
+        ]
+      },
+      "ink-charcoal": {
+        "role": "neutral",
+        "displayName": "Charcoal Ink",
+        "canonical": "#24262b",
+        "tonalRamp": [
+          "#23252a",
+          "#3d4149",
+          "#585d69",
+          "#737989",
+          "#9297a4",
+          "#b2b5be",
+          "#d1d4d9",
+          "#f1f2f3"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#4a4d54",
+        "tonalRamp": [
+          "#242529",
+          "#3f4248",
+          "#5a5e67",
+          "#767a86",
+          "#9498a1",
+          "#b3b6bc",
+          "#d2d4d8",
+          "#f1f2f3"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "canonical": "#faf8f3",
+        "tonalRamp": [
+          "#362d16",
+          "#5f4f28",
+          "#887239",
+          "#b1944a",
+          "#c4ad72",
+          "#d5c59b",
+          "#e6ddc4",
+          "#f8f4ed"
+        ]
+      },
+      "ivory-dim": {
+        "role": "neutral",
+        "displayName": "Ivory Dim",
+        "canonical": "#f3efe4",
+        "tonalRamp": [
+          "#352d18",
+          "#5d4f29",
+          "#86723b",
+          "#ae944d",
+          "#c1ad74",
+          "#d3c59d",
+          "#e5ddc5",
+          "#f7f5ed"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#efe9da",
+        "tonalRamp": [
+          "#352d17",
+          "#5e4f29",
+          "#87713a",
+          "#af934c",
+          "#c3ac73",
+          "#d4c49c",
+          "#e6dcc5",
+          "#f7f4ed"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero headline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles via the shared section header."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles and mobile menu items."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions and long-form reading."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Gold uppercase eyebrows and form labels."
+      },
+      "signature": {
+        "displayName": "Signature",
+        "purpose": "The header wordmark only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "dropdown",
+        "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
+        "purpose": "Practice areas dropdown only (Tailwind shadow-lg). Everything else is flat."
+      }
+    ],
+    "motion": [
+      {
+        "name": "fade-up",
+        "value": "0.6s cubic-bezier(0.22, 1, 0.36, 1), translateY(18px) to 0",
+        "purpose": "Scroll-reveal for content blocks; plays once per element."
+      },
+      {
+        "name": "fade-in",
+        "value": "0.5s ease-out",
+        "purpose": "Opacity-only reveal."
+      },
+      {
+        "name": "scale-in",
+        "value": "0.5s cubic-bezier(0.22, 1, 0.36, 1), scale 0.97 to 1",
+        "purpose": "Subtle entrance for framed elements."
+      },
+      {
+        "name": "stagger",
+        "value": "0.08s to 0.15s between siblings",
+        "purpose": "Sequencing of grouped blocks."
+      },
+      {
+        "name": "colour-transition",
+        "value": "300ms",
+        "purpose": "Hover and focus on buttons and links (header uses 500ms)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action on light surfaces: Chambers Navy fill, square, colour-only hover.",
+      "html": "<button class=\"ds-btn-primary\">Request a Consultation <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-weight:500;letter-spacing:0.025em;font-size:17.5px;line-height:1.5;padding:15px 30px;white-space:nowrap;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s;background:var(--color-navy-900, #10192e);color:var(--color-ivory, #faf8f3);border:1px solid var(--color-navy-900, #10192e);}.ds-btn-primary:hover{background:var(--color-navy-800, #16233f);}.ds-btn-primary:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quieter action beside or below a primary. Outlined navy.",
+      "html": "<button class=\"ds-btn-secondary\">View All Practice Areas <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-weight:500;letter-spacing:0.025em;font-size:17.5px;line-height:1.5;padding:15px 30px;white-space:nowrap;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s;background:transparent;color:var(--color-navy-900, #10192e);border:1px solid rgba(16,25,46,0.3);}.ds-btn-secondary:hover{border-color:var(--color-navy-900, #10192e);background:rgba(16,25,46,0.05);}.ds-btn-secondary:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}"
+    },
+    {
+      "name": "Outline Button on Navy",
+      "kind": "button",
+      "refersTo": "button-outline-light",
+      "description": "Action on the navy hero or footer. Inverts to ivory on hover.",
+      "html": "<div class=\"ds-on-navy\"><button class=\"ds-btn-outline-light\">Request a Consultation</button></div>",
+      "css": ".ds-on-navy{background:var(--color-navy-950, #0b1424);padding:24px;display:inline-block;}.ds-btn-outline-light{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-weight:500;letter-spacing:0.025em;font-size:17.5px;line-height:1.5;padding:15px 30px;white-space:nowrap;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s;background:transparent;color:var(--color-ivory, #faf8f3);border:1px solid rgba(250,248,243,0.5);}.ds-btn-outline-light:hover{background:var(--color-ivory, #faf8f3);color:var(--color-navy-900, #10192e);}.ds-btn-outline-light:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Square ivory field with an uppercase label above. Border darkens on focus, with the gold ring.",
+      "html": "<label class=\"ds-label\" for=\"ds-name\">Full Name *</label><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\"Your name\">",
+      "css": ".ds-label{display:block;margin-bottom:10px;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:15px;font-weight:600;letter-spacing:0.025em;text-transform:uppercase;color:var(--color-charcoal-soft, #4a4d54);}.ds-input{width:100%;box-sizing:border-box;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:17.5px;padding:15px 20px;background:var(--color-ivory, #faf8f3);color:var(--color-navy-950, #0b1424);border:1px solid rgba(16,25,46,0.2);border-radius:0;transition:border-color .2s;}.ds-input::placeholder{color:rgba(74,77,84,0.5);}.ds-input:focus{border-color:var(--color-navy-900, #10192e);}.ds-input:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-solid",
+      "description": "Solid-header link with the 1px gold underline on the active item, next to the handwritten wordmark.",
+      "html": "<div class=\"ds-nav\"><span class=\"ds-wordmark\"><span class=\"ds-sig\">Mwango Gichana</span><span class=\"ds-sub\">&amp; Co. Advocates</span></span><a class=\"ds-nav-link ds-active\" href=\"#\">About</a><a class=\"ds-nav-link\" href=\"#\">Practice Areas</a><a class=\"ds-nav-link\" href=\"#\">Contact</a></div>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:36px;padding:20px 30px;background:rgba(250,248,243,0.95);border-bottom:1px solid var(--color-border-hairline, rgba(16,25,46,0.12));}.ds-wordmark{display:flex;flex-direction:column;line-height:1;margin-right:auto;}.ds-sig{font-family:var(--font-signature, 'Alex Brush', cursive);font-size:36px;color:var(--color-navy-950, #0b1424);}.ds-sub{font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:13px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-gold-600, #7a6029);}.ds-nav-link{position:relative;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:17.5px;font-weight:500;letter-spacing:0.025em;color:var(--color-charcoal-soft, #4a4d54);text-decoration:none;transition:color .3s;}.ds-nav-link:hover{color:var(--color-navy-950, #0b1424);}.ds-nav-link.ds-active{color:var(--color-navy-950, #0b1424);}.ds-nav-link.ds-active::after{content:'';position:absolute;left:0;bottom:-7px;width:100%;height:1px;background:var(--color-gold-500, #b3903f);}.ds-nav-link:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}"
+    },
+    {
+      "name": "Practice Area Card",
+      "kind": "card",
+      "refersTo": "card-practice",
+      "description": "Square ivory cell with a bronze line icon, a two-digit index and a link line. Only the border changes on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-card-top\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" class=\"ds-card-icon\"><path d=\"M12 3 3 8l9 5 9-5-9-5Z\"/><path d=\"m3 13 9 5 9-5\"/></svg><span class=\"ds-card-index\">01</span></div><h3 class=\"ds-card-title\">Land &amp; Environment</h3><p class=\"ds-card-body\">Advising individuals, families, SMEs and conservancies on land and environmental matters across Kajiado County.</p><span class=\"ds-card-link\">View Practice Area <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></span></a>",
+      "css": ".ds-card{display:block;box-sizing:border-box;max-width:420px;padding:40px;background:var(--color-ivory, #faf8f3);border:1px solid var(--color-border-hairline, rgba(16,25,46,0.12));text-decoration:none;transition:border-color .3s;}.ds-card:hover{border-color:rgba(16,25,46,0.4);}.ds-card:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}.ds-card-top{display:flex;justify-content:space-between;align-items:flex-start;}.ds-card-icon{color:var(--color-gold-600, #7a6029);}.ds-card-index{font-family:var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);font-size:17.5px;color:rgba(74,77,84,0.4);}.ds-card-title{margin:30px 0 0;font-family:var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);font-weight:600;font-size:27px;line-height:1.3;color:var(--color-navy-950, #0b1424);}.ds-card-body{margin:15px 0 0;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:17.5px;line-height:1.625;color:var(--color-charcoal-soft, #4a4d54);}.ds-card-link{display:inline-flex;align-items:center;gap:10px;margin-top:40px;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:17.5px;font-weight:500;color:var(--color-navy-900, #10192e);}.ds-card-link svg{color:var(--color-gold-600, #7a6029);width:20px;height:20px;}"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "refersTo": "title",
+      "description": "Signature opener: gold rule and eyebrow, Cormorant headline, soft-ink description.",
+      "html": "<div class=\"ds-sh\"><p class=\"ds-eyebrow\"><span class=\"ds-rule\"></span>What We Do</p><h2 class=\"ds-h2\">Practice Areas</h2><p class=\"ds-desc\">A general practice firm with particular depth across five areas, built around the legal needs of Kajiado South.</p></div>",
+      "css": ".ds-sh{max-width:640px;}.ds-eyebrow{display:flex;align-items:center;gap:15px;margin:0 0 20px;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:15px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--color-gold-600, #7a6029);}.ds-rule{width:40px;height:1px;background:var(--color-gold-500, #b3903f);}.ds-h2{margin:0;font-family:var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);font-weight:600;font-size:44px;line-height:1.25;color:var(--color-navy-950, #0b1424);text-wrap:balance;}.ds-desc{margin:25px 0 0;font-family:var(--font-garamond, 'EB Garamond', Georgia, serif);font-size:22px;line-height:1.625;color:var(--color-charcoal-soft, #4a4d54);}"
+    },
+    {
+      "name": "Footer Social Button",
+      "kind": "chip",
+      "refersTo": "footer",
+      "description": "45px square outlined icon button used in the navy footer. Turns Bright Gold on hover.",
+      "html": "<div class=\"ds-foot\"><a class=\"ds-social\" href=\"#\" aria-label=\"LinkedIn\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1v5.4h-4v-4.8c0-1.15-.02-2.62-1.6-2.62-1.6 0-1.85 1.25-1.85 2.55v4.87h-4v-11Z\"/></svg></a></div>",
+      "css": ".ds-foot{background:var(--color-navy-950, #0b1424);padding:24px;display:inline-block;}.ds-social{display:flex;align-items:center;justify-content:center;width:45px;height:45px;border:1px solid rgba(250,248,243,0.2);color:rgba(250,248,243,0.7);transition:border-color .3s,color .3s;}.ds-social:hover{border-color:var(--color-gold-400, #cfa94e);color:var(--color-gold-400, #cfa94e);}.ds-social:focus-visible{outline:2px solid var(--color-gold-500, #b3903f);outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Chambers Seal",
+    "overview": "The site behaves like a document that has been sealed. The reading surface is ivory paper, the authority is navy, and the one act of endorsement is a small gold mark, the way a wax seal sits at the foot of a deed. The hero photograph of the firm's seal on a document is the literal source of the metaphor, and the brush-script wordmark is its signature.\n\nThe mood is formal first and calm throughout. Warmth comes from language and detail (plain copy, a handwritten wordmark, a Kiswahili toggle), never from decoration. The system rejects flashy corporate-law styling, stock gavel-and-scales imagery, safari-tourism cliches, and anything that reads as boasting or as a promise of outcome.",
+    "keyCharacteristics": [
+      "Ivory and paper surfaces, navy authority, gold only as a mark.",
+      "Two Garamond cuts plus one handwritten signature.",
+      "Square, flat, hairline-ruled; no shadow at rest.",
+      "One quiet fade-up motion, played once."
+    ],
+    "rules": [
+      {
+        "name": "The One Mark Rule",
+        "body": "Gold marks a thing and never fills it. It appears as a rule, an underline, an icon, an eyebrow or an outline. A gold button, panel or background is out of system.",
+        "section": "colors"
+      },
+      {
+        "name": "The Text-Safe Gold Rule",
+        "body": "On ivory and paper, gold text is always Bronze Gold (#7a6029). Seal Gold (#b3903f) and Bright Gold (#cfa94e) are for lines, or for text on navy only.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Signature Rule",
+        "body": "Alex Brush appears in the wordmark and nowhere else. It is never used for headings, quotes or decoration.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Garamonds Rule",
+        "body": "Headings are Cormorant, and everything read at length is EB Garamond. Sans-serif families are not introduced.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled Register Rule",
+        "body": "Repeated items are separated by 1px hairlines, not by gaps, shadows or tinted boxes.",
+        "section": "layout"
+      },
+      {
+        "name": "The Paper Stays Flat Rule",
+        "body": "Cards, buttons, inputs and panels have no shadow at rest or on hover. Hover is expressed by a border darkening, a fill change or an arrow nudge.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use gold as a single mark per view: one eyebrow rule, one underline, one icon (The One Mark Rule).",
+      "Do keep primary actions Chambers Navy (#10192e) with ivory text, and put the consultation call to action in the header on every page.",
+      "Do separate repeated items with 1px hairlines, as the practice area grid does.",
+      "Do use Bronze Gold (#7a6029) for any gold text on ivory or paper.",
+      "Do give every interactive element the 2px Seal Gold focus ring.",
+      "Do keep hero and imagery treatments seal-like: dark navy overlay, muted photo, headline bottom-left."
+    ],
+    "donts": [
+      "Don't fill a button, card or panel with gold.",
+      "Don't add shadows, lifts or glows to cards and buttons.",
+      "Don't use Alex Brush anywhere but the wordmark, or introduce a sans-serif family.",
+      "Don't use gavel, scales-of-justice or safari stock imagery, or any wording that boasts or promises an outcome.",
+      "Don't show placeholder stats, logos or testimonials as if they were confirmed."
+    ]
+  }
+}

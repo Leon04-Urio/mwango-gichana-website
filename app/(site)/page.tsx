@@ -1,12 +1,5 @@
-import { Hero } from "@/components/sections/Hero";
-import { TrustStats } from "@/components/sections/TrustStats";
-import { AboutTeaser } from "@/components/sections/AboutTeaser";
-import { PracticeAreasGrid } from "@/components/sections/PracticeAreasGrid";
-import { ClientLogos } from "@/components/sections/ClientLogos";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { BlogTeaser } from "@/components/sections/BlogTeaser";
-import { CTABand } from "@/components/sections/CTABand";
 import type { ArticleCardData } from "@/components/cards/ArticleCard";
+import SealHome from "@/components/home/seal/SealHome";
 import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
 import {
   articleListQuery,
@@ -46,16 +39,5 @@ export default async function HomePage() {
     coverImage: resolveImage(article.coverImage, article.title),
   }));
 
-  return (
-    <>
-      <Hero />
-      <TrustStats />
-      <ClientLogos clients={clients} />
-      <AboutTeaser />
-      <PracticeAreasGrid />
-      <Testimonials testimonials={testimonials} />
-      <BlogTeaser articles={recentPosts} />
-      <CTABand />
-    </>
-  );
+  return <SealHome articles={recentPosts} clients={clients} testimonials={testimonials} />;
 }
