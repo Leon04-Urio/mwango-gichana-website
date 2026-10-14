@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${cormorant.variable} ${alexBrush.variable} ${ebGaramond.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-ivory text-charcoal">
+      <body className="flex min-h-full flex-col bg-white text-charcoal">
         {children}
       </body>
     </html>

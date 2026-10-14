@@ -62,7 +62,7 @@ export function PracticeTabs({
   const area = areas[index];
 
   return (
-    <section className="bg-ivory py-10 sm:py-14">
+    <section className="bg-white py-10 sm:py-14">
       <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-12 lg:px-10">
         <div
           role="tablist"

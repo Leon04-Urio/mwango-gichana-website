@@ -1,6 +1,6 @@
 export function LegalPageBody({ children }: { children: React.ReactNode }) {
   return (
-    <section className="bg-ivory py-16 sm:py-20">
+    <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-3xl px-6 lg:px-10">
         <div className="mb-10 border-l-2 border-gold-500 bg-ivory-dim p-6 text-sm text-charcoal">
           This page contains placeholder legal copy for structural and

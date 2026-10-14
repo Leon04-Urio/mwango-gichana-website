@@ -243,7 +243,7 @@ export default async function ArticlePage({
       </div>
 
       {article.relatedArticles?.length > 0 && (
-        <section className="border-t border-border-hairline bg-ivory-dim py-20">
+        <section className="border-t border-border-hairline bg-white py-20">
           <div className="mx-auto max-w-8xl px-6 lg:px-10">
             <h2 className="font-display text-xl text-navy-950">Related Posts</h2>
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">

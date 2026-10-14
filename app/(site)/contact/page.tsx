@@ -29,7 +29,7 @@ export default function ContactPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact", href: "/contact" }]}
       />
 
-      <section className="bg-ivory py-20 sm:py-24">
+      <section className="bg-white py-20 sm:py-24">
         <div className="mx-auto grid max-w-8xl grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-12 lg:px-10">
           <div className="lg:col-span-7">
             <h2 className="font-display text-xl text-navy-950">

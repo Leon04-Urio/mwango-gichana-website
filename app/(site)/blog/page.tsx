@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { PageHeader } from "@/components/sections/PageHeader";
+import Image from "next/image";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import type { ArticleCardData } from "@/components/cards/ArticleCard";
 import { BlogIndex } from "@/components/sections/BlogIndex";
 import { sanityFetch, resolveImage } from "@/sanity/lib/fetch";
@@ -29,14 +30,21 @@ export default async function BlogPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Our Blog"
-        title="Blog &amp; Legal Updates"
-        description="Practical guidance on Kenyan law, written and reviewed by our advocates."
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Blog & Insights", href: "/blog" }]}
-      />
+      <div className="bg-ivory-dim">
+        <div className="mx-auto max-w-8xl px-6 pb-5 pt-24 sm:pt-28 lg:px-10">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog & Insights", href: "/blog" }]} />
+        </div>
+      </div>
 
-      <section className="bg-ivory py-16 sm:py-24">
+      <div className="relative overflow-hidden bg-charcoal">
+        <Image src="/hero-nairobi.jpg" alt="" fill sizes="100vw" priority className="object-cover object-[50%_30%]" />
+        <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+        <div className="relative px-6 py-14 text-center [text-shadow:0_1px_14px_rgba(0,0,0,0.6)] sm:py-20">
+          <h1 className="font-display display-regular text-4xl text-ivory sm:text-5xl">Blog</h1>
+        </div>
+      </div>
+
+      <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-8xl px-6 lg:px-10">
           {cards.length > 0 ? (
             <BlogIndex articles={cards} />

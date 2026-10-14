@@ -1,15 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { TrackedPhoneLink } from "@/components/analytics/TrackedPhoneLink";
+import { TrackedWhatsAppLink } from "@/components/analytics/TrackedWhatsAppLink";
+import { firm } from "@/lib/content/firm";
+import { practiceAreas } from "@/lib/content/practiceAreas";
+import { genericMessage, whatsappHref } from "@/lib/content/homepage";
 import { fadeUp, staggerChildren } from "@/lib/motion";
 
 // Two panels side by side at every size: the city on the left carries the
 // headline; the gold seal fills the right. On a phone the whole hero is compact.
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const router = useRouter();
+  const choose = (slug: string) => {
+    if (slug) router.push(`/practice-areas#${slug}`);
+  };
   return (
-    <section className="grid h-[22rem] grid-cols-[6fr_6fr] overflow-hidden bg-charcoal sm:h-[34rem] md:h-auto md:min-h-[100svh]">
+    <section className="relative grid h-[28rem] grid-cols-[6fr_6fr] overflow-hidden bg-charcoal sm:h-[36rem] md:h-auto md:min-h-[100svh]">
       <div className="relative z-10 col-start-1 row-start-1 w-[118%] md:w-[112%] [-webkit-mask-image:linear-gradient(to_right,black_72%,transparent)] [mask-image:linear-gradient(to_right,black_72%,transparent)] md:[-webkit-mask-image:linear-gradient(to_right,black_78%,transparent)] md:[mask-image:linear-gradient(to_right,black_78%,transparent)]">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -37,14 +48,14 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={staggerChildren(0.15)}
-          className="relative z-10 flex h-full flex-col justify-end px-5 pb-6 pt-20 sm:px-6 sm:pb-14 sm:pt-28 lg:px-10 lg:pb-20"
+          className="relative z-10 flex h-full flex-col justify-end px-5 pb-32 pt-20 sm:px-6 sm:pb-40 sm:pt-28 lg:px-10 lg:pb-44"
         >
           <motion.span variants={fadeUp} className="block h-px w-14 bg-gold-400" aria-hidden="true" />
           <motion.h1
             variants={fadeUp}
-            className="font-display display-light mt-5 max-w-md text-[1.75rem] leading-[1.08] text-balance text-ivory sm:mt-8 sm:text-5xl lg:text-6xl"
+            className="font-display display-light mt-5 max-w-lg text-[1.5rem] leading-[1.12] text-balance text-ivory sm:mt-8 sm:text-4xl lg:text-5xl"
           >
-            Dependable Legal Counsel
+            Legal counsel for individuals, families and businesses across Kenya
           </motion.h1>
           <motion.p
             variants={fadeUp}
@@ -76,6 +87,53 @@ export function Hero() {
           aria-hidden="true"
         />
       </div>
+
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute inset-x-5 bottom-5 z-20 sm:bottom-10 sm:left-6 sm:right-auto sm:w-[26rem] lg:bottom-14 lg:left-10 lg:w-[30rem]"
+      >
+        <label htmlFor="hero-need" className="sr-only">
+          What can we help you with?
+        </label>
+        <div className="relative">
+          <select
+            id="hero-need"
+            defaultValue=""
+            onChange={(e) => choose(e.target.value)}
+            className="focus-ring h-12 w-full appearance-none border border-border-hairline bg-white pl-4 pr-10 text-sm text-navy-950 sm:h-14 sm:text-base"
+          >
+            <option value="" disabled>
+              What can we help you with?
+            </option>
+            {practiceAreas.map((a) => (
+              <option key={a.slug} value={a.slug}>
+                {a.shortTitle}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-navy-950"
+            aria-hidden="true"
+          />
+        </div>
+        <p className="mt-3 text-xs text-ivory/90 sm:text-sm">
+          Or speak to an advocate:{" "}
+          <TrackedPhoneLink
+            href={firm.contact.phoneHref}
+            location="hero"
+            className="focus-ring inline-block py-1 underline decoration-gold-400 underline-offset-4 hover:text-gold-400"
+          >
+            Call
+          </TrackedPhoneLink>
+          <span className="mx-2 text-gold-400" aria-hidden="true">&middot;</span>
+          <TrackedWhatsAppLink
+            href={whatsappHref(genericMessage)}
+            className="focus-ring inline-block py-1 underline decoration-gold-400 underline-offset-4 hover:text-gold-400"
+          >
+            WhatsApp
+          </TrackedWhatsAppLink>
+        </p>
+      </form>
     </section>
   );
 }

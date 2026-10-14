@@ -21,7 +21,7 @@ export default function AboutPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About", href: "/about" }]}
       />
 
-      <section className="bg-ivory py-24 sm:py-28">
+      <section className="bg-white py-24 sm:py-28">
         <div className="mx-auto grid max-w-8xl grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-10 lg:px-10">
           <div className="lg:col-span-7">
             <SectionHeader eyebrow="Who We Are" title="Our Story" />
@@ -45,7 +45,7 @@ export default function AboutPage() {
       </section>
 
       {(!isPlaceholder(firm.vision) || !isPlaceholder(firm.mission)) && (
-        <section className="border-y border-border-hairline bg-ivory-dim py-24 sm:py-28">
+        <section className="border-y border-border-hairline bg-white py-24 sm:py-28">
           <div className="mx-auto max-w-8xl px-6 lg:px-10">
             <div className="grid grid-cols-1 gap-16 sm:grid-cols-2">
               {!isPlaceholder(firm.vision) && (
@@ -73,7 +73,7 @@ export default function AboutPage() {
         </section>
       )}
 
-      <section className="bg-ivory py-24 sm:py-28">
+      <section className="bg-white py-24 sm:py-28">
         <div className="mx-auto max-w-8xl px-6 lg:px-10">
           <SectionHeader
             eyebrow="Our Approach"
@@ -99,7 +99,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-border-hairline bg-ivory-dim py-24 sm:py-28">
+      <section className="border-t border-border-hairline bg-white py-24 sm:py-28">
         <div className="mx-auto max-w-8xl px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
             <div>

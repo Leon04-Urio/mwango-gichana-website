@@ -25,7 +25,7 @@
   --color-border-hairline: rgba(16, 25, 46, 0.12);
   --color-border-hairline-dark: rgba(250, 248, 243, 0.18);
 
-  --background: var(--color-ivory);
+  --background: #ffffff;
   --foreground: var(--color-charcoal);
 }
 

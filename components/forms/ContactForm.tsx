@@ -8,7 +8,7 @@ import { trackContactFormSubmit } from "@/lib/analytics";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const inputClasses =
-  "focus-ring w-full border border-navy-900/20 bg-ivory px-4 py-3 text-sm text-navy-950 placeholder:text-charcoal/50 transition-colors focus:border-navy-900";
+  "focus-ring w-full border border-navy-900/20 bg-white px-4 py-3 text-sm text-navy-950 placeholder:text-charcoal/50 transition-colors focus:border-navy-900";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
