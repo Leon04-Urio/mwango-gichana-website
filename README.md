@@ -7,11 +7,11 @@ law firm in Kimana Town, Kajiado South, serving the Amboseli ecosystem.
 
 Next.js (App Router) · React · TypeScript · Tailwind CSS v4 · Framer Motion ·
 Lucide icons · Sanity (connected, live) · Resend (contact form email) ·
-Google Analytics 4 · GitHub + Vercel (hosting/CI)
+Google Analytics 4 · GitHub (source) · Vercel (testing copy only)
 
 **Live infrastructure already set up:**
 - GitHub: `Leon04-Urio/mwango-gichana-website`
-- Vercel: connected to the GitHub repo (auto-deploys on push to `main`)
+- Vercel: connected to the GitHub repo and auto-deploys on push to `main`. This is a **testing copy only**. The production host is still to be decided (see "Going to production" below).
 - Sanity: project `gryyptqx` ("Mwango Gichana Website"), private `production`
   dataset, Studio at `/studio`
 
@@ -81,8 +81,8 @@ npx sanity hooks create \
   --project-id gryyptqx
 ```
 
-`REVALIDATE_SECRET` must match the value set in Vercel's environment
-variables (generate one with
+`REVALIDATE_SECRET` must match the value set in the host's environment
+variables (Vercel for the test copy, the production host for the live site; generate one with
 `node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"`).
 
 ## Contact Form
@@ -143,6 +143,37 @@ Profile itself is managed outside this codebase. To connect them:
    addition — the current build deliberately omits ratings/review structured
    data since none exist yet (fabricating them would violate Google's
    guidelines).
+
+## Going to production
+
+Vercel is used for testing only. The live site will be deployed elsewhere, and
+the host is not chosen yet. Whichever host is chosen must:
+
+- **Run Next.js as a server** (Node.js). The contact form (`/api/contact`) and
+  the Sanity refresh webhook (`/api/revalidate`) are server routes, so plain
+  static or PHP-only hosting will not work.
+- **Hold the same environment variables** as the Vercel test copy:
+  `NEXT_PUBLIC_SITE_URL` (the real address), `RESEND_API_KEY`,
+  `CONTACT_FROM_EMAIL`, `CONTACT_RECIPIENT_EMAIL`, the four Sanity values
+  (`NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`,
+  `NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_READ_TOKEN`),
+  `REVALIDATE_SECRET` and `NEXT_PUBLIC_GA_MEASUREMENT_ID`. See `.env.example`.
+
+Checklist before launch:
+
+1. Create the Resend account, verify the sending domain and set the three email
+   variables, then send a real test enquiry.
+   **Waiting on the client:** the domain cannot be verified until the client
+   gives access to its DNS. Raise this at the next client consultation.
+2. Choose the host and set every variable above there.
+3. Point the Sanity webhook at the production address
+   (`https://<your-domain>/api/revalidate`), using the same `REVALIDATE_SECRET`.
+4. Point the domain at the host and set `NEXT_PUBLIC_SITE_URL` to it.
+5. Remove the temporary content: the demo client logos (marked `TEMP PREVIEW`),
+   the "Img place holder" boxes, and any stock photographs of people.
+6. Confirm the WhatsApp number, the office address and the office hours in
+   `lib/content/firm.ts`.
+7. Set up Google Analytics and submit the sitemap in Google Search Console.
 
 ## Known Dev-Dependency Advisory
 

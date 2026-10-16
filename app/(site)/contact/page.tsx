@@ -32,7 +32,7 @@ export default function ContactPage() {
       <section className="bg-white py-20 sm:py-24">
         <div className="mx-auto grid max-w-8xl grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-12 lg:px-10">
           <div className="lg:col-span-7">
-            <h2 className="font-display text-xl text-navy-950">
+            <h2 className="font-display text-xl uppercase tracking-[0.12em] text-navy-950">
               Send an Enquiry
             </h2>
             <p className="mt-2 text-sm text-charcoal">

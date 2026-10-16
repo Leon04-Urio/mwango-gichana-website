@@ -11,8 +11,8 @@ import { practiceAreas } from "@/lib/content/practiceAreas";
 import { genericMessage, whatsappHref } from "@/lib/content/homepage";
 import { fadeUp, staggerChildren } from "@/lib/motion";
 
-// Two panels side by side at every size: the city on the left carries the
-// headline; the gold seal fills the right. On a phone the whole hero is compact.
+// One full-width photograph with the headline on the darkened left and the
+// enquiry bar beneath it. On a phone the whole hero is compact.
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const router = useRouter();
@@ -20,36 +20,38 @@ export function Hero() {
     if (slug) router.push(`/practice-areas#${slug}`);
   };
   return (
-    <section className="relative grid h-[28rem] grid-cols-[6fr_6fr] overflow-hidden bg-charcoal sm:h-[36rem] md:h-auto md:min-h-[100svh]">
-      <div className="relative z-10 col-start-1 row-start-1 w-[118%] md:w-[112%] [-webkit-mask-image:linear-gradient(to_right,black_72%,transparent)] [mask-image:linear-gradient(to_right,black_72%,transparent)] md:[-webkit-mask-image:linear-gradient(to_right,black_78%,transparent)] md:[mask-image:linear-gradient(to_right,black_78%,transparent)]">
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute inset-0 origin-[45%_45%]"
-            initial={{ scale: reduceMotion ? 1.14 : 1 }}
-            animate={{ scale: 1.14 }}
-            transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Image
-              src="/hero-nairobi.jpg"
-              alt="A raised road curving past office towers in the city centre"
-              fill
-              priority
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover object-[50%_22%]"
-            />
-          </motion.div>
-        </div>
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/60 md:via-black/20 md:to-black/45"
-          aria-hidden="true"
+    <section className="relative flex h-[28rem] items-end overflow-hidden bg-charcoal sm:h-[36rem] md:h-auto md:min-h-[100svh]">
+      <motion.div
+        className="absolute inset-0 origin-[70%_40%]"
+        initial={{ scale: reduceMotion ? 1.06 : 1 }}
+        animate={{ scale: 1.06 }}
+        transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
+          src="/hero-office.jpg"
+          alt="An advocate working at a laptop in a professional office"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[75%_8%]"
         />
+      </motion.div>
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/60 to-transparent md:via-navy-950/45"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"
+        aria-hidden="true"
+      />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerChildren(0.15)}
-          className="relative z-10 flex h-full flex-col justify-end px-5 pb-32 pt-20 sm:px-6 sm:pb-40 sm:pt-28 lg:px-10 lg:pb-44"
-        >
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={staggerChildren(0.15)}
+        className="relative z-10 mx-auto flex w-full max-w-8xl flex-col px-5 pb-32 pt-20 sm:px-6 sm:pb-40 sm:pt-28 lg:px-10 lg:pb-44"
+      >
+        <div className="max-w-xl">
           <motion.span variants={fadeUp} className="block h-px w-14 bg-gold-400" aria-hidden="true" />
           <motion.h1
             variants={fadeUp}
@@ -67,26 +69,8 @@ export function Hero() {
             <span className="text-gold-400" aria-hidden="true">&middot;</span>
             Discretion
           </motion.p>
-        </motion.div>
-      </div>
-
-      <div className="relative col-span-2 col-start-1 row-start-1 overflow-hidden bg-charcoal">
-        {/* Wider than the panel and pinned right, so the join in the wide image is always cropped out. */}
-        <div className="absolute inset-y-0 -right-16 w-[205%] sm:right-0 sm:w-[190%] md:w-[130%]">
-          <Image
-            src="/hero-seal-stamp-wide.jpg"
-            alt="Mwango Gichana & Co. Advocates wax seal stamp on a document"
-            fill
-            priority
-            sizes="(min-width: 768px) 130vw, 230vw"
-            className="object-cover object-[100%_52%]"
-          />
         </div>
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/35"
-          aria-hidden="true"
-        />
-      </div>
+      </motion.div>
 
       <form
         onSubmit={(e) => e.preventDefault()}

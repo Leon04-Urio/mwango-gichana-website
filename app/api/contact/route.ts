@@ -44,11 +44,11 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL || "Website Enquiries <onboarding@resend.dev>",
       to: recipient,
-      replyTo: email,
+      replyTo: email || undefined,
       subject: `New Consultation Request from ${name}`,
       text: [
         `Name: ${name}`,
-        `Email: ${email}`,
+        `Email: ${email || "Not provided"}`,
         `Phone: ${phone || "Not provided"}`,
         `Practice Area: ${practiceArea || "Not specified"}`,
         `Preferred Contact Method: ${preferredContact}`,

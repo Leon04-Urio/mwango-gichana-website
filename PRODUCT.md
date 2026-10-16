@@ -42,7 +42,7 @@ The overall impression the site should create is that of an established firm wit
 
 ## Capabilities and Constraints
 
-- Next.js App Router, React, TypeScript, Tailwind CSS v4, Framer Motion, Sanity, Resend, GA4, deployed on Vercel from GitHub.
+- Next.js App Router, React, TypeScript, Tailwind CSS v4, Framer Motion, Sanity, Resend, GA4. The code lives on GitHub. Vercel (connected to the repository) is a testing copy only; the production host has not been chosen yet. Whatever host is chosen must run Next.js as a server, because the contact form (`/api/contact`) and the Sanity refresh webhook (`/api/revalidate`) are server routes, so plain static hosting will not work.
 - Two content sources: `lib/content/*.ts` for firm information and practice areas (developer-edited), and Sanity for blog posts, clients and testimonials (firm-edited).
 - **Mobile and low bandwidth first.** A large share of visitors arrive on phones, often over patchy connections. Phone and WhatsApp are primary paths, the first screen must remain light, and every page must be comfortable to read and operate with one thumb.
 - **Bilingual, English and Kiswahili.** A language toggle exists (`components/layout/LanguageToggle.tsx`, stored in localStorage). Content and layout must be able to work in both languages, including longer Kiswahili strings.

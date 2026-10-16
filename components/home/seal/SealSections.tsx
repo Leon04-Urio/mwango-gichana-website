@@ -113,21 +113,20 @@ export function SealPractice() {
 
 export function SealClose() {
   return (
-    <section className="bg-paper py-28 text-center text-navy-950 sm:py-40">
+    <section className="bg-paper py-10 text-center text-navy-950 sm:py-14">
       <motion.div {...inView} variants={fadeUp} className="mx-auto max-w-3xl px-6">
-        <span className="mx-auto block h-px w-14 bg-gold-500" aria-hidden="true" />
-        <h2 className="font-display display-light mt-6 text-3xl leading-[1.1] text-balance sm:mt-10 sm:text-6xl">
+        <h2 className="font-display display-light text-2xl leading-[1.1] text-balance sm:text-4xl">
           Speak to an advocate
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-charcoal sm:mt-8 sm:text-lg">
+        <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-charcoal sm:mt-4 sm:text-base">
           Call or message us directly, or request a consultation. We respond promptly and in
           confidence.
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-5">
+        <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:mt-6 sm:flex-row sm:gap-4">
           <TrackedPhoneLink
             href={firm.contact.phoneHref}
             location="home_close"
-            className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900 bg-navy-900 px-7 py-3.5 text-xs sm:px-9 sm:py-4 sm:text-sm font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-300 hover:bg-transparent hover:text-navy-900"
+            className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900 bg-navy-900 px-6 py-3 text-xs sm:px-7 sm:text-sm font-medium uppercase tracking-[0.2em] text-ivory transition-colors duration-300 hover:bg-transparent hover:text-navy-900"
           >
             <Phone className="size-4" aria-hidden="true" />
             {firm.contact.phoneDisplay}
@@ -135,7 +134,7 @@ export function SealClose() {
           {firm.contact.whatsappNumber && (
             <TrackedWhatsAppLink
               href={whatsappHref(genericMessage)}
-              className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900/40 px-7 py-3.5 text-xs sm:px-9 sm:py-4 sm:text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors duration-300 hover:bg-navy-900 hover:text-ivory"
+              className="focus-ring inline-flex items-center justify-center gap-3 border border-navy-900/40 px-6 py-3 text-xs sm:px-7 sm:text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors duration-300 hover:bg-navy-900 hover:text-ivory"
             >
               <WhatsAppIcon className="size-4" />
               WhatsApp
@@ -144,7 +143,7 @@ export function SealClose() {
         </div>
         <Link
           href="/contact"
-          className="focus-ring mt-7 inline-block border-b border-gold-500 pb-1 text-xs sm:mt-10 sm:text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors hover:text-gold-600"
+          className="focus-ring mt-4 inline-block border-b border-gold-500 pb-1 text-xs sm:mt-5 sm:text-sm uppercase tracking-[0.2em] text-navy-900 transition-colors hover:text-gold-600"
         >
           Request a consultation
         </Link>
